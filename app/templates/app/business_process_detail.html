@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <h1>{{ business_process.name }}</h1>
+
+    <p><strong>Стоимость: </strong> {{ business_process.cost }}</p>
+    <p><strong>Относительная важность: </strong> {{ business_process.relative_important }}</p>
+{#    <p><strong>Предприятие: </strong> {% for genre in book.genre.all %}#}
+{#        {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>#}
+{##}
+{#    <div style="margin-left:20px;margin-top:20px">#}
+{#        <h4>Copies</h4>#}
+{##}
+{#        {% for copy in book.bookinstance_set.all %}#}
+{#            <hr>#}
+{#            <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>#}
+{#            {% if copy.status != 'a' %}<p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>{% endif %}#}
+{#            <p><strong>Imprint:</strong> {{ copy.imprint }}</p>#}
+{#            <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{% endblock %}

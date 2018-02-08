@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <h1>Предприятия</h1>
+    <hr class="style13">
+    {% if enterprise_list %}
+        <ul class="list-unstyled">
+
+            {% for enterprise in enterprise_list %}
+                <li>
+                    <a href="{% url 'enterprise_detail' enterprise.id %}">{{ enterprise.name }}</a> ({{ enterprise.id }})
+                </li>
+            {% endfor %}
+
+        </ul>
+    {% else %}
+        <p>There are no enterprise in the app.</p>
+    {% endif %}
+{% endblock %}

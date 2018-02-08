@@ -1,0 +1,18 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <h1>Список бизнес-процесов</h1>
+    <hr class="style13">
+    {% if business_proceses %}
+        <ul class="list-unstyled">
+            {% for business_process in business_proceses %}
+                <li>
+                    <a href="{% url 'business_process_detail' business_process.id %}">{{ business_process.name }}</a>
+                    ({{ business_process.id }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no business process in the app.</p>
+    {% endif %}
+{% endblock %}
