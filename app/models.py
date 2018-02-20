@@ -1,24 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-'''
-ENTERPRISE
-'''
-
-
-class Enterprise(models.Model):
-    name = models.CharField(max_length=128)
-
-    class Meta:
-        db_table = 'enterprise'
-        verbose_name_plural = '01. Предприятие(Enterprise)'
-
-    def __str__(self):
-        return "ID:{0} - {1}".format(self.id, self.name)
-
-    @property
-    def label(self):
-        return self.name
+from core.Enterprise.models import Enterprise
 
 
 class BusinessProcessGroup(models.Model):

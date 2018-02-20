@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Добавление дополнительного статического CSS файла -->
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="script" href="{% static 'js/script.js' %}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -51,7 +52,7 @@
             <!-- Main Menu -->
             <div class="side-menu-container">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'enterprises' %}"><span class="glyphicon glyphicon-home"></span>Предприятия</a>
+                    <li><a href="{% url 'enterprise-list' %}"><span class="glyphicon glyphicon-home"></span>Предприятия</a>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span>Сотрудники</a></li>
                     {#                    <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>#}

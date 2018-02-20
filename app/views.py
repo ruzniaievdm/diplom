@@ -13,44 +13,6 @@ def index(request):
                   context={'num_enterprise': num_enterprise, 'num_businessProcess': num_businessProcess})
 
 
-class EnterpriseListView(generic.ListView):
-    model = Enterprise
-
-
-def enterprise_detail(request, id):
-    enterprise = get_object_or_404(Enterprise, pk=id)
-    return render(request, 'app/enterprise_detail.html', {'enterprise': enterprise})
-
-
-def enterprise_new(request):
-    if request.method == "POST":
-        form = EnterpriseForm(request.POST)
-        if form.is_valid():
-            enterprise = form.save(commit=False)
-            name = form.cleaned_data['name']
-            enterprise.name = name
-            enterprise.save()
-            return redirect('enterprises')
-    else:
-        form = EnterpriseForm()
-    return render(request, 'app/enterprise_edit.html', {'form': form})
-
-
-def enterprise_edit(request, id):
-    post = get_object_or_404(Enterprise, pk=id)
-    if request.method == "POST":
-        form = EnterpriseForm(request.POST, instance=post)
-        if form.is_valid():
-            enterprise = form.save(commit=False)
-            name = form.cleaned_data['name']
-            enterprise.name = name
-            enterprise.save()
-            return redirect('enterprises')
-    else:
-        form = EnterpriseForm(instance=post)
-    return render(request, 'app/enterprise_edit.html', {'form': form})
-
-
 def business_proceses(request):
     business_proceses = BusinessProcess.objects.all()
     return render(request, 'app/business_process_list.html', {'business_proceses': business_proceses})

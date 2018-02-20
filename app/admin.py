@@ -12,7 +12,6 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'patronymic', 'department', 'position_employee')
 
 
-admin.site.register(Enterprise)
 admin.site.register(BusinessProcessGroup)
 admin.site.register(Department)
 admin.site.register(PositionEmployee)

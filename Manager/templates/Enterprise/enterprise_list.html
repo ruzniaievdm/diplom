@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="topheader">
+        <div>
+            <h1>Предприятия</h1>
+        </div>
+        <div>
+            <a href="{% url 'enterprise-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <hr/>
+    {% if enterprises %}
+        <ul class="list-unstyled list-group">
+            {% for enterprise in enterprises %}
+                <li class="list-group-item">
+                    <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
+                    <a class="btn btn-default btn-xs pensil" href="{% url 'enterprise-edit' enterprise.id %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a class="btn btn-default btn-xs pensil" href="{% url 'enterprise-delete' enterprise.id %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <span class="badge badge_pos">{{ enterprise.id }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no enterprise in the app.</p>
+    {% endif %}
+{% endblock %}
