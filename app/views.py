@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from typing import re
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.views import generic
+from .forms import *
 
 
 def index(request):
@@ -19,6 +22,35 @@ def enterprise_detail(request, id):
     return render(request, 'app/enterprise_detail.html', {'enterprise': enterprise})
 
 
+def enterprise_new(request):
+    if request.method == "POST":
+        form = EnterpriseForm(request.POST)
+        if form.is_valid():
+            enterprise = form.save(commit=False)
+            name = form.cleaned_data['name']
+            enterprise.name = name
+            enterprise.save()
+            return redirect('enterprises')
+    else:
+        form = EnterpriseForm()
+    return render(request, 'app/enterprise_edit.html', {'form': form})
+
+
+def enterprise_edit(request, id):
+    post = get_object_or_404(Enterprise, pk=id)
+    if request.method == "POST":
+        form = EnterpriseForm(request.POST, instance=post)
+        if form.is_valid():
+            enterprise = form.save(commit=False)
+            name = form.cleaned_data['name']
+            enterprise.name = name
+            enterprise.save()
+            return redirect('enterprises')
+    else:
+        form = EnterpriseForm(instance=post)
+    return render(request, 'app/enterprise_edit.html', {'form': form})
+
+
 def business_proceses(request):
     business_proceses = BusinessProcess.objects.all()
     return render(request, 'app/business_process_list.html', {'business_proceses': business_proceses})
@@ -27,3 +59,23 @@ def business_proceses(request):
 def business_process_detail(request, id):
     business_process = get_object_or_404(BusinessProcess, pk=id)
     return render(request, 'app/business_process_detail.html', {'business_process': business_process})
+
+
+'''
+INDICATOR AND ANALYSIS
+'''  # def analysis_form(request):
+
+
+#     #form = AnalysisForm(request.POST)
+#     if request.method == 'POST':
+#         if form.is_valid():
+#             obj = form.save(commit=False)
+#             obj.save()
+#         else:
+#             form = Analysis()
+#     return render(request, 'app/analysis_list.html', {'form': form})
+
+
+def analysis_list(request):
+    analysis = Analysis.objects.all()
+    return render(request, 'app/analysis_list.html', {'analysis': analysis})

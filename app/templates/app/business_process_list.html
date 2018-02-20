@@ -1,8 +1,15 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <h1>Список бизнес-процесов</h1>
-    <hr class="style13">
+    <div class="topheader">
+        <div>
+            <h1>Список бизнес-процесов</h1>
+        </div>
+        <div>
+            <a href=""><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <hr/>
     {% if business_proceses %}
         <ul class="list-unstyled">
             {% for business_process in business_proceses %}

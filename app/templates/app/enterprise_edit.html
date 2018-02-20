@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block content %}
+    <div class="topheader">
+        <div>
+            <h1>Предприятия</h1>
+        </div>
+    </div>
+    <hr/>
+    <form method="POST" class="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}

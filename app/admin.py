@@ -2,18 +2,9 @@ from django.contrib import admin
 from .models import *
 
 
-class BusinessProcessInline(admin.TabularInline):
-    model = BusinessProcess
-
-
-@admin.register(Enterprise)
-class EnterpriseAdmin(admin.ModelAdmin):
-    inlines = [BusinessProcessInline]
-
-
 @admin.register(BusinessProcess)
 class BusinessProcessAdmin(admin.ModelAdmin):
-    list_display = ('name', 'cost', 'relative_important', 'enterprise', 'bp_group')
+    list_display = ('name', 'cost_plan', 'relative_important', 'enterprise', 'bp_group')
 
 
 @admin.register(Employee)
@@ -21,6 +12,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'patronymic', 'department', 'position_employee')
 
 
+admin.site.register(Enterprise)
 admin.site.register(BusinessProcessGroup)
 admin.site.register(Department)
 admin.site.register(PositionEmployee)
@@ -35,3 +27,10 @@ admin.site.register(ScaleMeasure)
 admin.site.register(UnitMeasure)
 admin.site.register(Resource)
 admin.site.register(WorkResource)
+# IndicatorAnalysis
+admin.site.register(Analysis)
+admin.site.register(WorkAnalysis)
+admin.site.register(GroupIndicator)
+admin.site.register(Factor)
+admin.site.register(Indicator)
+#admin.site.register(Recommendation)

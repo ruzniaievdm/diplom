@@ -1,11 +1,15 @@
 from django.conf.urls import url
+from django.urls import include, path
 
 from . import views
 
 urlpatterns = [
-    url(r'^home/$', views.index, name='index'),
-    url(r'^enterprises/$', views.EnterpriseListView.as_view(), name='enterprises'),
-    url(r'enterprise/(?P<id>[0-9]+)/$', views.enterprise_detail, name='enterprise_detail'),
-    url(r'business_proceses/$', views.business_proceses, name='business_proceses'),
-    url(r'business_process/(?P<id>[0-9]+)/$', views.business_process_detail, name='business_process_detail')
+    path('home/', views.index, name='index'),
+    path('enterprises/', views.EnterpriseListView.as_view(), name='enterprises'),
+    path('enterprise/<int:id>/', views.enterprise_detail, name='enterprise_detail'),
+    path('enterprise/new/', views.enterprise_new, name='enterprise_new'),
+    path('enterprise/<int:id>/edit/', views.enterprise_edit, name='enterprise_edit'),
+    path('business_proceses/', views.business_proceses, name='business_proceses'),
+    path('business_process/<int:id>/', views.business_process_detail, name='business_process_detail'),
+    path('analysis/', views.analysis_list, name='analysis_list'),
 ]

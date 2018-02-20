@@ -2,10 +2,23 @@
     outline: none;
 }
 
-.row {
-    margin-right: 0;
-    margin-left: 0;
-    font-family: 'Roboto', sans-serif;
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pensil{
+    float: right;
+}
+.badge_pos{
+    margin-right: 10px;
+}
+
+.topheader div {
+    display: table-cell;
+    width: 100%;
 }
 
 hr.style13 {

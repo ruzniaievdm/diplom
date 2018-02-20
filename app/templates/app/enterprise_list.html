@@ -1,19 +1,28 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <h1>Предприятия</h1>
-    <hr class="style13">
+    <div class="topheader">
+        <div>
+            <h1>Предприятия</h1>
+        </div>
+        <div>
+            <a href="{% url 'enterprise_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <hr/>
     {% if enterprise_list %}
-        <ul class="list-unstyled">
-
+        <ul class="list-unstyled list-group">
             {% for enterprise in enterprise_list %}
-                <li>
-                    <a href="{% url 'enterprise_detail' enterprise.id %}">{{ enterprise.name }}</a> ({{ enterprise.id }})
+                <li class="list-group-item">
+                    <a href="{% url 'enterprise_detail' enterprise.id %}">{{ enterprise.name }}</a>
+                    <a class="btn btn-default btn-xs pensil" href="{% url 'enterprise_edit' id=enterprise.pk %}">
+                        <span class="glyphicon glyphicon-pencil"></span></a>
+                    <span class="badge badge_pos">{{ enterprise.id }}</span>
                 </li>
             {% endfor %}
-
         </ul>
     {% else %}
         <p>There are no enterprise in the app.</p>
     {% endif %}
+    </div>
 {% endblock %}

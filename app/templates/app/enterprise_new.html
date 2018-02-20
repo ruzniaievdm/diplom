@@ -1,0 +1,18 @@
+{% extends "app/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div class="container">
+        <div class="topheader">
+            <div>
+                <h1>Предприятия</h1>
+            </div>
+        </div>
+        <hr/>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}
