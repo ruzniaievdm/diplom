@@ -9,7 +9,7 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.pensil{
+.compon_glyphicon{
     float: right;
 }
 .badge_pos{
@@ -21,11 +21,6 @@ hr {
     width: 100%;
 }
 
-hr.style13 {
-    height: 10px;
-    border: 0;
-    box-shadow: 0 10px 10px -10px #8c8b8b inset;
-}
 
 .side-menu {
     position: fixed;
