@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'core.Enterprise',
-    'app'
+    'core.BusinessProcessGroup',
+    'core.BusinessProcess',
+    'core.Department',
+    'core.PositionEmployee',
+    'core.Employee',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -131,5 +136,4 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-# TEMPLATE_DIRS = ('/home/rewalkerof/PycharmProjects/Project/app/templates',)
 STATIC_URL = '/static/'

@@ -3,7 +3,7 @@ from django.db.models import ProtectedError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
-from .forms import EnterpriseForm
+from Manager.Enterprise.forms import EnterpriseForm
 from core.Enterprise.models import Enterprise
 
 
@@ -58,4 +58,3 @@ def enterprise_delete(request, enterprise_id):
         messages.warning(request, _('Enterprise has related objects and can not be deleted'))
 
     return redirect('enterprise-list')
-

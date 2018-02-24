@@ -1,17 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <div class="container">
-        <div class="topheader">
-            <div>
-                <h1>Предприятия</h1>
-            </div>
-        </div>
-        <hr/>
-        <form method="POST">
+    <div class="col-md-12">
+        <form action="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Предприятие/Добавление</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'enterprise-list' %}">
+                        <button type="button" class="btn btn-danger">Отменить</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary ">Подтвердить</button>
+
+                    {#                    <a href="{% url 'department-add' %}">#}
+                    {#                        <button type="button" class="btn btn-info col-md-offset-5">+ Отдел</button>#}
+                    {#                    </a>#}
+                    {#                    <a href="{% url 'position-add' %}">#}
+                    {#                        <button type="button" class="btn btn-info">+ Должность</button>#}
+                    {#                    </a>#}
+                </div>
+            </div>
         </form>
     </div>
 {% endblock %}

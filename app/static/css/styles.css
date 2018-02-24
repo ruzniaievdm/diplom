@@ -9,10 +9,12 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.compon_glyphicon{
+.compon_glyphicon {
     float: right;
+    margin-left: 4px;
 }
-.badge_pos{
+
+.badge_pos {
     margin-right: 10px;
 }
 
@@ -21,13 +23,13 @@ hr {
     width: 100%;
 }
 
-
 .side-menu {
     position: fixed;
     width: 300px;
     height: 100%;
     background-color: #f8f8f8;
     border-right: 1px solid #e7e7e7;
+    padding-left: 10px;
 }
 
 .side-menu .navbar {
@@ -378,4 +380,18 @@ hr {
     margin-top: 20px;
     padding: 0;
     list-style: none;
+}
+
+ul.errorlist {
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li {
+    background-color: red;
+    color: white;
+    display: block;
+    font-size: 10px;
+    margin: 0 0 3px;
+    padding: 4px 5px;
 }

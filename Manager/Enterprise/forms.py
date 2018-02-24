@@ -10,8 +10,8 @@ class EnterpriseForm(forms.ModelForm):
         fields = '__all__'
 
     name = forms.CharField(
-        max_length=128, widget=forms.TextInput(
-            attrs={'id': 'id_name', 'required': True,
+        max_length=128, label=_('Название'), widget=forms.TextInput(
+            attrs={'id': 'name', 'required': True,
                    'placeholder': _('Enterprise name'),
                    'class': 'form-control', 'type': 'text', }))
 

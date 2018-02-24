@@ -13,7 +13,7 @@ class Enterprise(models.Model):
         verbose_name_plural = _('01. Enterprise')
 
     def __str__(self):
-        return "ID:{0} - {1}".format(self.id, self.name)
+        return "%s" % self.name
 
     @property
     def label(self):

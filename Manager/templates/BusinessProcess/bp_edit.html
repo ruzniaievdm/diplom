@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Бизнес-процесс/Редактирование</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'enterprise-add' %}">
+                        <button type="button" class="btn btn-info ">+ Предприятие</button>
+                    </a>
+                    <a href="{% url 'bpgroup-add' %}">
+                        <button type="button" class="btn btn-info">+ Группу БП</button>
+
+                        <a href="{% url 'bp-list' %}">
+                            <button type="button" class="btn btn-danger col-md-offset-5">Отменить</button>
+
+                        </a>
+                        <button type="submit" class="btn btn-primary ">Подтвердить</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

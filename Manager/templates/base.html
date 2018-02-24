@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Добавление дополнительного статического CSS файла -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="script" href="{% static '/js/script.js' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="script" href="{% static 'js/script.js' %}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -52,40 +51,51 @@
             <!-- Main Menu -->
             <div class="side-menu-container">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'enterprise-list' %}"><span class="glyphicon glyphicon-home"></span>Предприятия</a>
+                    <li class="panel panel-default" id="dropdown"><a data-toggle="collapse" href="#dropdown-lvl0"> <span
+                            class="glyphicon glyphicon-home"></span>Предприятия<span class="caret"></span></a>
+                        <div id="dropdown-lvl0" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{% url 'enterprise-list' %}">Список предприятий</a></li>
+                                    <li><a href="{% url 'department-list' %}">Отделы</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Сотрудники</a></li>
+                    <li class="panel panel-default" id="dropdown"><a data-toggle="collapse" href="#dropdown-lvl1"> <span
+                            class="glyphicon glyphicon-list-alt"></span>Бизнес-процессы<span class="caret"></span></a>
+                        <div id="dropdown-lvl1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{% url 'bp-list' %}">Список бизнес-процессов</a></li>
+                                    <li><a href="{% url 'bpgroup-list' %}">Группы бизнес-процессов</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-stats"></span>Анализ</a></li>
+                    <!-- Dropdown-->
+                    <li class="panel panel-default" id="dropdown">
+                        <a data-toggle="collapse" href="#dropdown-lvl2"> <span class="glyphicon glyphicon-user"></span>
+                            Сотрудники<span class="caret"></span>
+                        </a>
+                        <div id="dropdown-lvl2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{% url 'employee-list' %}">Список сотрудников</a></li>
+                                    <li><a href="{% url 'position-list' %}">Должности</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                     {#                    <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>#}
-                    <li><a href="{% url 'business_proceses' %}"><span class="glyphicon glyphicon-list-alt"></span>
-                        Бизнес-процессы</a></li>
-                    <li><a href="{% url 'analysis_list' %}"><span class="glyphicon glyphicon-stats"></span>Анализ</a>
-                    </li>
-
-                    {#                    <!-- Dropdown-->#}
-                    {#                    <li class="panel panel-default" id="dropdown">#}
-                    {#                        <a data-toggle="collapse" href="#dropdown-lvl1">#}
-                    {#                            <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>#}
-                    {#                        </a>#}
-                    {##}
-                    {#                        <!-- Dropdown level 1 -->#}
-                    {#                        <div id="dropdown-lvl1" class="panel-collapse collapse">#}
-                    {#                            <div class="panel-body">#}
-                    {#                                <ul class="nav navbar-nav">#}
-                    {#                                    <li><a href="#">Link</a></li>#}
-                    {#                                    <li><a href="#">Link</a></li>#}
-                    {#                                    <li><a href="#">Link</a></li>#}
-                    {#                                </ul>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </li>#}
-                    {#                    <li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>#}
                 </ul>
-            </div><!-- /.navbar-collapse -->
+            </div>
         </nav>
     </div>
 
     <!-- Main Content -->
-    <div class="container-fluid"> {% comment %}fluid{% endcomment %}
+    <div class="container-fluid">
         <div class="side-body">
             <div class="col-sm-10 ">
                 {% block content %}{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="topheader">
+        <div>
+            <h1>Бизнес-процессы</h1>
+        </div>
+        <div>
+            <a href="{% url 'bp-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <hr/>
+    {% if bps %}
+        <ul class="list-unstyled list-group">
+            {% for bp in bps %}
+                <li class="list-group-item">
+                    <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
+                    <a class="btn btn-default btn-xs compon_glyphicon"
+                       href="{% url 'bp-delete' bp.id %}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'bp-edit' bp.id %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <span class="badge badge_pos">{{ bp.id }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no business process group in the app.</p>
+    {% endif %}
+{% endblock %}

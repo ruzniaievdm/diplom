@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="topheader">
+        <div>
+            <h1>Должности сотрудников</h1>
+        </div>
+        <div>
+            <a href="{% url 'position-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </div>
+    <hr/>
+    {% if positions %}
+        <ul class="list-unstyled list-group">
+            {% for position in positions %}
+                <li class="list-group-item">
+                    {{ position.name }}
+                    <a class="btn btn-default btn-xs compon_glyphicon"
+                       href="{% url 'position-delete' position.id %}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'position-edit' position.id %}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <span class="badge badge_pos">{{ position.id }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no position employee in the app.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Повышение ефективности бизнес процессов</h1>
+    <hr/>
+    <p><em>Добро пожаловать</em></p>
+    <ul class="list-unstyled list-group">
+        <li><strong>Предприятий: </strong> {{ num_enterprise }}</li>
+        <li><strong>Бизнес-процессов: </strong> {{ num_bp }}</li>
+        <li><strong>Групп бизнес-процессов: </strong> {{ num_bpgroup }}</li>
+        <li><strong>Отделов: </strong> {{ num_department }}</li>
+        <li><strong>Должностей сотрудников: </strong> {{ num_position }}</li>
+        <li><strong>Сотрудников: </strong>{{ num_employee }}</li>
+    </ul>
+{% endblock %}
