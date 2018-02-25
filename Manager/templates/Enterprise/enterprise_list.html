@@ -1,33 +1,41 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-    <div class="topheader">
-        <div>
-            <h1>Предприятия</h1>
-        </div>
-        <div>
-            <a href="{% url 'enterprise-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
-    </div>
-    <hr/>
-    {% if enterprises %}
-        <ul class="list-unstyled list-group">
-            {% for enterprise in enterprises %}
-                <li class="list-group-item">
-                    <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Предприятия/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if enterprises %}
+                        <ul class="list-unstyled list-group">
+                            {% for enterprise in enterprises %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
 
-                    <a class="btn btn-default btn-xs compon_glyphicon"
-                       href="{% url 'enterprise-delete' enterprise.id %}">
-                        <span class="glyphicon glyphicon-trash"></span>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'enterprise-delete' enterprise.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'enterprise-edit' enterprise.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <span class="badge badge_pos">{{ enterprise.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no enterprise in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'enterprise-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
                     </a>
-                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'enterprise-edit' enterprise.id %}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <span class="badge badge_pos">{{ enterprise.id }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no enterprise in the app.</p>
-    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

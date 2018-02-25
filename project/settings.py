@@ -43,6 +43,14 @@ INSTALLED_APPS = [
     'core.Department',
     'core.PositionEmployee',
     'core.Employee',
+    'core.ProcessExecutor',
+    'core.ArrowType',
+    'core.GlossaryArrow',
+    'core.BusinessProcessWork',
+    'core.TypeResource',
+    'core.ScaleMeasure',
+    'core.UnitMeasure',
+    'core.Resource',
     'app',
 ]
 
