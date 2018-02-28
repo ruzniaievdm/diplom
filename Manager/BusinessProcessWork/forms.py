@@ -26,9 +26,9 @@ class BusinessProcessWorkForm(forms.ModelForm):
         (4, 'Lvl 4'),
         (5, 'Lvl 5'),
     )
-    level = forms.ChoiceField(choices=list_of_choices,
-                              label=_('Уровень работы'), widget=forms.TextInput(
-            attrs={'id': 'level', 'class': 'form-control', }))
+    level = forms.ChoiceField(
+        choices=list_of_choices, label=_('Уровень работы'),
+        widget=forms.TextInput(attrs={'id': 'level', 'class': 'form-control', }))
 
     parent = forms.CharField(
         max_length=32, label=_('Родительская работа'), widget=forms.TextInput(
@@ -36,9 +36,9 @@ class BusinessProcessWorkForm(forms.ModelForm):
                    'placeholder': _('Parent work'),
                    'class': 'form-control', 'type': 'text', }))
 
-    process = forms.ModelChoiceField(queryset=BusinessProcess.objects.all(), empty_label=None,
-                                     label='Бизнес-процесс', widget=forms.Select(
-            attrs={'id': 'bp', 'class': 'form-control'}), )
+    process = forms.ModelChoiceField(
+        queryset=BusinessProcess.objects.all(), empty_label=None,
+        label='Бизнес-процесс', widget=forms.Select(attrs={'id': 'bp', 'class': 'form-control'}))
 
     def clean_name(self):
         name = self.cleaned_data['name']
@@ -46,6 +46,5 @@ class BusinessProcessWorkForm(forms.ModelForm):
         if qs.exists() and self.instance:
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise forms.ValidationError(_('Work with name %(name)s already exists'),
-                                        params={'name': name})
+            raise forms.ValidationError(_('Work with name %(name)s already exists'), params={'name': name})
         return name
