@@ -1,33 +1,42 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-    <div class="topheader">
-        <div>
-            <h1>Отделы</h1>
-        </div>
-        <div>
-            <a href="{% url 'department-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
-    </div>
-    <hr/>
-    {% if departments %}
-        <ul class="list-unstyled list-group">
-            {% for department in departments %}
-                <li class="list-group-item">
-                    <a href="{% url 'department-detail' department.id %}">{{ department.name }}</a>
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Отделы/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if departments %}
+                        <ul class="list-unstyled list-group">
+                            {% for department in departments %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'department-detail' department.id %}">{{ department.name }}</a>
 
-                    <a class="btn btn-default btn-xs compon_glyphicon"
-                       href="{% url 'department-delete' department.id %}">
-                        <span class="glyphicon glyphicon-trash"></span>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'department-delete' department.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'department-edit' department.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <span class="badge badge_pos">{{ department.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no department in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'department-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
                     </a>
-                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'department-edit' department.id %}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <span class="badge badge_pos">{{ department.id }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no department in the app.</p>
-    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
+

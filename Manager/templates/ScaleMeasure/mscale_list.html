@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Шкалы измерений/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if mscales %}
+                        <ul class="list-unstyled list-group">
+                            {% for mscale in mscales %}
+                                <li class="list-group-item">
+                                    {{ mscale.name }}
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'mscale-delete' mscale.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'mscale-edit' mscale.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <span class="badge badge_pos">{{ mscale.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no scale in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'mscale-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

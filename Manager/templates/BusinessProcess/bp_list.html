@@ -1,32 +1,39 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-    <div class="topheader">
-        <div>
-            <h1>Бизнес-процессы</h1>
-        </div>
-        <div>
-            <a href="{% url 'bp-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Бизнес-процессы/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if bps %}
+                        <ul class="list-unstyled list-group">
+                            {% for bp in bps %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'bp-delete' bp.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'bp-edit' bp.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <span class="badge badge_pos">{{ bp.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no business process in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'bp-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <hr/>
-    {% if bps %}
-        <ul class="list-unstyled list-group">
-            {% for bp in bps %}
-                <li class="list-group-item">
-                    <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
-                    <a class="btn btn-default btn-xs compon_glyphicon"
-                       href="{% url 'bp-delete' bp.id %}">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'bp-edit' bp.id %}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <span class="badge badge_pos">{{ bp.id }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no business process group in the app.</p>
-    {% endif %}
 {% endblock %}

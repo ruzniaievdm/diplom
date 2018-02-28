@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Исполнители процессов/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if procexecs %}
+                        <ul class="list-unstyled list-group">
+                            {% for procexec in procexecs %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'procexec-detail' procexec.id %}">{{ procexec.employee }}</a>
+
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'procexec-delete' procexec.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'procexec-edit' procexec.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+
+                                    <span class="badge badge_pos">{{ procexec.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no process executors in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'procexec-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+

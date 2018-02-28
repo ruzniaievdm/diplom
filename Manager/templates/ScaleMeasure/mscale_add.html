@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Шкала измерений/Добавление</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'mscale-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-9">Отменить</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

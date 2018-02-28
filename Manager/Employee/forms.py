@@ -48,4 +48,4 @@ class EmployeeForm(forms.ModelForm):
             raise forms.ValidationError(
                 _('Employee %s %s %s already exists' % self.first_name, self.last_name, self.patronymic),
                 code='invalid')
-            return first_name
+        return first_name

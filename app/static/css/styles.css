@@ -1,12 +1,9 @@
-:focus {
-    outline: none;
+html {
+    overflow-x: hidden;
 }
 
-hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+:focus {
+    outline: none;
 }
 
 .compon_glyphicon {
@@ -325,7 +322,7 @@ hr {
     /* Slide side body*/
     .side-body {
         margin-left: 5px;
-        margin-top: 70px;
+        margin-top: 0px;
         position: relative;
         -moz-animation: bodyslideout 300ms forwards;
         -o-animation: bodyslideout 300ms forwards;
@@ -344,16 +341,15 @@ hr {
         transform-style: preserve-3d;
     }
 
-    /* Hamburger */
-    .navbar-toggle {
-        border: 0;
-        float: left;
-        padding: 18px;
-        margin: 0;
-        border-radius: 0;
-        background-color: #f3f3f3;
-    }
-
+    /*!* Hamburger *!*/
+    /*.navbar-toggle {*/
+    /*border: 0;*/
+    /*float: left;*/
+    /*padding: 18px;*/
+    /*margin: 0;*/
+    /*border-radius: 0;*/
+    /*background-color: #f3f3f3;*/
+    /*}*/
     /* Search */
     #search .panel-body .navbar-form {
         border-bottom: 0;

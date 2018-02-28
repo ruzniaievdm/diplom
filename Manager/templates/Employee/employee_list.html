@@ -1,32 +1,40 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-    <div class="topheader">
-        <div>
-            <h1>Сотрудники</h1>
-        </div>
-        <div>
-            <a href="{% url 'employee-add' %}"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Сотрудники/Список</h3>
+                </div>
+                <div class="panel-body">
+                    {% if employees %}
+                        <ul class="list-unstyled list-group">
+                            {% for employee in employees %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'employee-detail' employee.id %}">{{ employee.last_name }} {{ employee.first_name }} {{ employee.patronymic }}</a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'employee-delete' employee.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-default btn-xs compon_glyphicon"
+                                       href="{% url 'employee-edit' employee.id %}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <span class="badge badge_pos">{{ employee.id }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no employee in the app.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'employee-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <hr/>
-    {% if employees %}
-        <ul class="list-unstyled list-group">
-            {% for employee in employees %}
-                <li class="list-group-item">
-                    <a href="{% url 'employee-detail' employee.id %}">{{ employee.last_name }} {{ employee.first_name }} {{ employee.patronymic }}</a>
-                    <a class="btn btn-default btn-xs compon_glyphicon"
-                       href="{% url 'employee-delete' employee.id %}">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'employee-edit' employee.id %}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <span class="badge badge_pos">{{ employee.id }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no employee in the app.</p>
-    {% endif %}
 {% endblock %}

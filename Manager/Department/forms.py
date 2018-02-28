@@ -26,11 +26,11 @@ class DepartmentForm(forms.ModelForm):
         if qs.exists() and self.instance:
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            # raise forms.ValidationError(_('Department with name %(name)s already exists'), params={'name': name},
-            #                             code='invalid')
-            raise forms.ValidationError(self.error_messages['password_mismatch'])
+            raise forms.ValidationError(_('Department with name %(name)s already exists'), params={'name': name},
+                                        code='invalid')
+        # raise forms.ValidationError(self.error_messages['password_mismatch'])
         return name
 
-    error_messages = {
-        'password_mismatch': _("The two password fields didn't match."),
-    }
+        # error_messages = {
+        #     'password_mismatch': _("The two password fields didn't match."),
+        # }

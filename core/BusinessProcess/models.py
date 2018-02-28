@@ -17,7 +17,7 @@ class BusinessProcess(models.Model):
         verbose_name_plural = _('03. BusinessProcess')
 
     def __str__(self):
-        return "ID:{0} - {1}".format(self.id, self.name)
+        return "%s" % self.name
 
     @property
     def label(self):

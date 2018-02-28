@@ -21,5 +21,5 @@ class EnterpriseForm(forms.ModelForm):
         if qs.exists() and self.instance:
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
-            raise forms.ValidationError(_('Enterprise with this name already exists'))
+            raise forms.ValidationError(_('Enterprise with name %(name)s already exists'), params={'name': name})
         return name

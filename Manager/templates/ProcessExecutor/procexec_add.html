@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Исполнители процессов/Добавление</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'department-add' %}">
+                        <button type="button" class="btn btn-info ">+ Отдел</button>
+                    </a>
+                    <a href="{% url 'bp-add' %}">
+                        <button type="button" class="btn btn-info">+ Бизнес-процесс</button>
+                    </a>
+                    <a href="{% url 'employee-add' %}">
+                        <button type="button" class="btn btn-info">+ Сотрудник</button>
+                    </a>
+                    <a href="{% url 'procexec-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-3">Отменить</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary ">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
