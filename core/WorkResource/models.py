@@ -10,6 +10,7 @@ class WorkResource(models.Model):
     resource = models.ForeignKey(Resource, on_delete=models.PROTECT)
     expense = models.FloatField()
 
+
     class Meta:
         db_table = 'work_resource'
         unique_together = ('work', 'resource')
