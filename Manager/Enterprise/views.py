@@ -4,20 +4,23 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
 from Manager.Enterprise.forms import EnterpriseForm
+from core.BusinessProcess.models import BusinessProcess
 from core.Enterprise.models import Enterprise
+from django.db.models import Count
 
 
 def enterprise_list(request):
     enterprises = Enterprise.objects.all().order_by('id')
-
-    return render(request, 'Enterprise/enterprise_list.html',
-                  {'enterprises': enterprises})
+    # num_bps = BusinessProcess.objects.all().filter(enterprise_id=enterprises).count()
+    context = {'enterprises': enterprises, }
+    return render(request, 'Enterprise/enterprise_list.html', context)
 
 
 def enterprise_detail(request, enterprise_id):
     enterprise = get_object_or_404(Enterprise, pk=enterprise_id)
+    bps = BusinessProcess.objects.all().filter(enterprise_id=enterprise)
     return render(request, 'Enterprise/enterprise_detail.html',
-                  {'enterprise': enterprise})
+                  {'enterprise': enterprise, 'bps': bps})
 
 
 def enterprise_add(request):

@@ -13,7 +13,6 @@
                             {% for enterprise in enterprises %}
                                 <li class="list-group-item">
                                     <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
-
                                     <a class="btn btn-default btn-xs compon_glyphicon"
                                        href="{% url 'enterprise-delete' enterprise.id %}">
                                         <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +21,7 @@
                                        href="{% url 'enterprise-edit' enterprise.id %}">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
-                                    <span class="badge badge_pos">{{ enterprise.id }}</span>
+                                    <span class="badge badge_pos">{{ num_bps }}</span>
                                 </li>
                             {% endfor %}
                         </ul>

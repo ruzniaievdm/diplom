@@ -1,25 +1,41 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h1>Title: {{ enterprise.name }}</h1>
-
-    <p><strong>ID:</strong> <a
-            href="">{{ enterprise.id }}</a>
-    </p>
-    {#  <p><strong>Summary:</strong> {{ book.summary }}</p>#}
-    {#  <p><strong>ISBN:</strong> {{ book.isbn }}</p> #}
-    {#  <p><strong>Language:</strong> {{ book.language }}</p>  #}
-    {#  <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  #}
-
-    {#    <div style="margin-left:20px;margin-top:20px">#}
-    {#        <h4>Copies</h4>#}
-    {##}
-    {#        {% for copy in book.bookinstance_set.all %}#}
-    {#            <hr>#}
-    {#            <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>#}
-    {#            {% if copy.status != 'a' %}<p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>{% endif %}#}
-    {#            <p><strong>Imprint:</strong> {{ copy.imprint }}</p>#}
-    {#            <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>#}
-    {#        {% endfor %}#}
-    {#    </div>#}
+    <div class="col-md-12">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Предприятие/{{ enterprise.name }}/Существующие бизнес-процессы</h3>
+                </div>
+                <div class="panel-body">
+                    {% if bps %}
+                        <ul class="list-unstyled list-group">
+                            {% for bp in bps %}
+                                <li class="list-group-item">
+                                <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
+                                <a class="btn btn-default btn-xs compon_glyphicon"
+                                   href="{% url 'bp-delete' bp.id %}">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                                <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'bp-edit' bp.id %}">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                                <span class="badge badge_pos">{{ bp.id }}</span>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>There are no business process in the enterprise.</p>
+                    {% endif %}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'enterprise-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-9">Назад</button>
+                    </a>
+                    <a href="{% url 'bp-add' %}">
+                        <button type="button" class="btn btn-primary">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -5,6 +5,8 @@ from django.utils.translation import ugettext as _
 
 from Manager.BusinessProcess.forms import BusinessProcessForm
 from core.BusinessProcess.models import BusinessProcess
+from core.BusinessProcessWork.models import BusinessProcessWork
+from core.Enterprise.models import Enterprise
 
 
 def bp_list(request):
@@ -15,8 +17,9 @@ def bp_list(request):
 
 def bp_detail(request, bp_id):
     bp = get_object_or_404(BusinessProcess, pk=bp_id)
+    bpworks = BusinessProcessWork.objects.all().filter(process_id=bp)
     return render(request, 'BusinessProcess/bp_detail.html',
-                  {'bp': bp})
+                  {'bp': bp, 'bpworks': bpworks})
 
 
 def bp_add(request):

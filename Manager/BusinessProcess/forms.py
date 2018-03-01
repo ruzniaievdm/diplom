@@ -9,7 +9,7 @@ from core.BusinessProcessGroup.models import BusinessProcessGroup
 class BusinessProcessForm(forms.ModelForm):
     class Meta:
         model = BusinessProcess
-        fields = '__all__'
+        fields = ['name', 'cost_plan', 'relative_important', 'bp_group']
 
     name = forms.CharField(
         max_length=128, label=_('Название'), widget=forms.TextInput(
@@ -43,4 +43,4 @@ class BusinessProcessForm(forms.ModelForm):
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
             raise forms.ValidationError(_('Business process %s already exists' % name))
-            return name
+        return name

@@ -33,9 +33,10 @@ class EmployeeForm(forms.ModelForm):
                                         label='Отдел', widget=forms.Select(
             attrs={'id': 'department', 'class': 'form-control'}), )
 
-    # position = forms.ModelChoiceField(queryset=PositionEmployee.objects.all(), empty_label=None,
-    #                                   label='Должность', widget=forms.Select(
-    #         attrs={'id': 'position', 'class': 'form-control'}), )
+    position_employee = forms.ModelChoiceField(
+        queryset=PositionEmployee.objects.all(), empty_label=None,
+        label='Должность', widget=forms.Select(
+            attrs={'id': 'position', 'class': 'form-control'}))
 
     def clean_name(self):
         first_name = self.cleaned_data['first_name']

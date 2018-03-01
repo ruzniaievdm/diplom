@@ -15,6 +15,10 @@ html {
     margin-right: 10px;
 }
 
+.container-fluid {
+    margin-bottom: -20px;
+}
+
 .topheader div {
     display: table-cell;
     width: 100%;
@@ -171,6 +175,12 @@ html {
     border-radius: 0;
     background-color: #f3f3f3;
     padding: 15px 18px;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
 }
 
 /* Main body section */
@@ -372,19 +382,13 @@ html {
     }
 }
 
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-}
-
 ul.errorlist {
     margin: 0;
     padding: 0;
 }
 
 .errorlist li {
-    background-color: red;
+    background-color: #ff362f;
     color: white;
     display: block;
     font-size: 10px;
