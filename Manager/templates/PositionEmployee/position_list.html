@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
@@ -8,26 +8,28 @@
                     <h3 class="panel-title">Должности сотрудников/Список</h3>
                 </div>
                 <div class="panel-body">
-                    {% if positions %}
-                        <ul class="list-unstyled list-group">
-                            {% for position in positions %}
-                                <li class="list-group-item">
-                                    {{ position.name }}
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'position-delete' position.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'position-edit' position.id %}">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                    <span class="badge badge_pos">{{ position.id }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>There are no position employee in the app.</p>
-                    {% endif %}
+                    <div class="box-scroll">
+                        {% if positions %}
+                            <ul class="list-unstyled list-group">
+                                {% for position in positions %}
+                                    <li class="list-group-item">
+                                        {{ position.name }}
+                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                           href="{% url 'position-delete' position.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                           href="{% url 'position-edit' position.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <span class="badge badge_pos">{{ position.id }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no position employee in the app.</p>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'position-add' %}">

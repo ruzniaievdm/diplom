@@ -22,6 +22,13 @@ def bp_detail(request, bp_id):
                   {'bp': bp, 'bpworks': bpworks})
 
 
+def bp_expenses(request, bp_id):
+    bp = get_object_or_404(BusinessProcess, pk=bp_id)
+    bpworks = BusinessProcessWork.objects.all().filter(process_id=bp)
+    context = {'bp': bp, 'bpworks': bpworks}
+    return render(request, 'BusinessProcess/bp_expenses.html', context)
+
+
 def bp_add(request):
     if request.method == "POST":
         form = BusinessProcessForm(request.POST)

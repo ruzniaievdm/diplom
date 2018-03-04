@@ -7,5 +7,5 @@ urlpatterns = [
     path('add/', views.business_process_work_add, name='bpwork-add'),
     path('<int:bpwork_id>/edit/', views.business_process_work_edit, name='bpwork-edit'),
     path('<int:bpwork_id>/delete/', views.business_process_work_delete, name='bpwork-delete'),
-
+    # path('<int:bp_id>/bp/<int:bpwork_id>', views.business_process_work_delete_cell, name='bpwork-delete-cell')
 ]
