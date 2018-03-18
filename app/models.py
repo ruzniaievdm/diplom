@@ -1,26 +1,4 @@
-# from django.db import models
-# from django.utils import timezone
-#
-# from core.Enterprise.models import Enterprise
-# from core.BusinessProcessGroup.models import BusinessProcessGroup
-#
-#
 
-# '''
-# INDICATOR AND ANALYSIS
-# '''
-#
-#
-# class Analysis(models.Model):
-#     description = models.CharField(max_length=128)
-#     create_at = models.DateTimeField(default=timezone.now)
-#
-#     class Meta:
-#         db_table = 'analysis'
-#         verbose_name_plural = '17. Анализ(Analysis)'
-#
-#     def __str__(self):
-#         return 'ID: %s' % self.id
 #
 #
 # class WorkAnalysis(models.Model):

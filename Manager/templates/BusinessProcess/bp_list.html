@@ -13,16 +13,19 @@
                             <ul class="list-unstyled list-group">
                                 {% for bp in bps %}
                                     <li class="list-group-item">
+                                        {#                                        <span class="badge badge-info">{% for num in bpwork.process_id.all %}#}
+                                        {#                                            {{ num }}{% endfor %}</span>#}
+
                                         <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'bp-delete' bp.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
-                                           href="{% url 'bp-edit' bp.id%}">
+                                           href="{% url 'bp-edit' bp.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ bp.id }}</span>
+                                        {#                                        <span class="badge badge_pos">{{ bp.id }}</span>#}
                                     </li>
                                 {% endfor %}
                             </ul>

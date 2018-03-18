@@ -41,7 +41,7 @@ def business_process_work_edit(request, bpwork_id):
             bpwork.parent = form.cleaned_data['parent']
             bpwork.level = form.cleaned_data['level']
             bpwork.process = form.cleaned_data['process']
-            bpwork.save(force_update=False)
+            bpwork.save(force_update=True)
             return redirect('bpwork-list')
     else:
         form = BusinessProcessWorkForm(instance=bpwork)
@@ -66,3 +66,5 @@ def business_process_work_delete(request, bpwork_id):
 #     except ProtectedError:
 #         messages.error(request, ('Work has related objects and can not be deleted'))
 #     return success_url
+def get_queryset(process_id):
+    process_list = BusinessProcessWork.objects.filter(process_id=process_id)

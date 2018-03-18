@@ -1,5 +1,4 @@
 from django.urls import include, path
-
 from Manager import views
 
 urlpatterns = [
@@ -19,5 +18,7 @@ urlpatterns = [
     path('tresource', include('Manager.TypeResource.urls'), name='tresource'),
     path('unitm/', include('Manager.UnitMeasure.urls'), name='unitm'),
     path('wresource/', include('Manager.WorkResource.urls'), name='wresource'),
+    path('analysis/', include('Manager.Analysis.urls'), name='analysis'),
+    path('cost_work/', include('Manager.CostWork.urls'), name='cost_work'),
 
 ]

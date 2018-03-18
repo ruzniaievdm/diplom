@@ -15,11 +15,10 @@ class BusinessProcessWork(models.Model):
         (6, 'Lvl 6'),
         (7, 'Lvl 7'),
     )
-
+    process = models.ForeignKey(BusinessProcess, on_delete=models.PROTECT)
     name = models.CharField(max_length=64, null=True, blank=True)
     level = models.IntegerField(null=True, blank=True, choices=level_of_choices)
-    parent = models.CharField(max_length=64, null=True, blank=True)
-    process = models.ForeignKey(BusinessProcess, on_delete=models.PROTECT)
+    parent = models.ForeignKey('self', null=True, on_delete=models.PROTECT)
 
     class Meta:
         db_table = 'business_process_work'

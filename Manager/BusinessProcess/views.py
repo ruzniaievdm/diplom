@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.db.models import ProtectedError
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
@@ -11,8 +12,9 @@ from core.Enterprise.models import Enterprise
 
 def bp_list(request):
     bps = BusinessProcess.objects.all().order_by('id')
+    context = {'bps': bps, }
     return render(request, 'BusinessProcess/bp_list.html',
-                  {'bps': bps})
+                  context)
 
 
 def bp_detail(request, bp_id):
@@ -70,5 +72,4 @@ def bp_delete(request, bp_id):
         bp.delete()
     except ProtectedError:
         messages.warning(request, _('Business process has related objects and can not be deleted'))
-
-    return redirect('bp-list')
+    return HttpResponse("Deleted!")

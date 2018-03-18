@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}<title>Django</title>{% endblock %}
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Добавление дополнительного статического CSS файла -->
+    <!-- Добавление дополнительного статического CSS файла -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="script" href="{% static 'js/script.js' %}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--SELECT2-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 <body>
 <div class="row">
@@ -70,10 +73,10 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-stats"></span>Анализ</a></li>
+
                     <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
                                                                      href="#dropdown-lvl3"> <span
-                            class="glyphicon glyphicon-list-alt"></span>Стрелки работ<span
+                            class="glyphicon glyphicon-sort"></span>Стрелки работ<span
                             class="caret"></span></a>
                         <div id="dropdown-lvl3" class="panel-collapse collapse">
                             <div class="panel-body">
@@ -86,7 +89,7 @@
                     </li>
                     <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
                                                                      href="#dropdown-lvl4"> <span
-                            class="glyphicon glyphicon-list-alt"></span>Ресурсы<span
+                            class="glyphicon glyphicon-file"></span>Ресурсы<span
                             class="caret"></span></a>
                         <div id="dropdown-lvl4" class="panel-collapse collapse">
                             <div class="panel-body">
@@ -99,12 +102,24 @@
                             </div>
                         </div>
                     </li>
+                    <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                     href="#dropdown-lvl5"> <span
+                            class="glyphicon glyphicon-stats"></span>Анализ<span
+                            class="caret"></span></a>
+                        <div id="dropdown-lvl5" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{% url 'analysis-list' %}">Анализ БП</a></li>
+                                    <li><a href="{% url 'cost_work-list' %}">Анализ стоимостей работ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                     {#                    <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>#}
                 </ul>
             </div>
         </nav>
     </div>
-
     <!-- Main Content -->
     <div class="container-fluid">
         <div class="side-body">

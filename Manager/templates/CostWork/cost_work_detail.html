@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Анализ:<b><a href="{% url 'analysis-list' %}">{{ cost_work.analysis_id }}</a></b>
+                Бизнес-процесс:<b>{% for process in cost_work.process.name %}
+                    {{ process }}{% endfor %}</b></h3>
+        </div>
+        <table class=" table table-fixed table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%">№</th>
+                <th style="width: 20%">Название работы</th>
+                <th style="width: 20%">Вид функции</th>
+                <th style="width: 20%">Стоимость работы</th>
+                <th style="width: 15%">Единица измерения</th>
+                <th style="width: 15%">Продолжительность</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cost_work in cost_works reversed %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ cost_work.work }}</td>
+                    <td>{{ cost_work.kind }}</td>
+                    <td>{{ cost_work.cost_work }}</td>
+                    <td>{{ cost_work.measure }}</td>
+                    <td>{{ cost_work.duration }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="cos-xs-12" colspan="7">No data</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="panel-footer">
+            <a href="#">
+                <button type="button" class="btn btn-success">С</button>
+            </a>
+            <a href="{% url 'cost_work-list' %}">
+                <button type="button" class="btn btn-danger col-md-offset-7">Отменить
+                </button>
+            </a>
+            <a href="">
+                <button type="submit" class="btn btn-primary ">Добавить</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

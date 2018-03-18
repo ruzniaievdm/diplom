@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'select2',
     'bootstrap4',
+    'django_tables2',
     'core.Enterprise',
     'core.BusinessProcessGroup',
     'core.BusinessProcess',
@@ -51,10 +54,12 @@ INSTALLED_APPS = [
     'core.ScaleMeasure',
     'core.UnitMeasure',
     'core.Resource',
+    'core.CostWork',
     'core.WorkResource',
+    'core.Analysis',
+    'core.Hg',
     'app',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,24 +94,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'django_db',
+#         'USER': 'rewalkerof',
+#         'PASSWORD': 'password',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_db',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db',
         'USER': 'rewalkerof',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '3306',
+        'OPTIONS': {
+            'read_default_file': '/path/to/my.cnf',
+        },
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'read_default_file': '/etc/mysql/my.cnf',
-#         },
-#     }
-# }
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -124,6 +134,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -143,7 +163,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'Manager/locale')
 )
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 

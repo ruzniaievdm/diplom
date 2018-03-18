@@ -1,8 +1,8 @@
-from typing import re
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 
+from core.Analysis.models import Analysis
 from core.BusinessProcessWork.models import BusinessProcessWork
+from core.CostWork.models import CostWork
 from core.GlossaryArrow.models import GlossaryArrow
 from core.ArrowType.models import ArrowType
 from core.BusinessProcess.models import BusinessProcess
@@ -33,9 +33,12 @@ def index(request):
     num_unitm = UnitMeasure.objects.all().count()
     num_resource = Resource.objects.all().count()
     num_wresource = WorkResource.objects.all().count()
+    num_analysis = Analysis.objects.all().count()
+    num_cost_work = CostWork.objects.all().count()
     return render(request, 'index.html',
                   context={'num_enterprise': num_enterprise, 'num_bp': num_bp, 'num_bpgroup': num_bpgroup,
                            'num_department': num_department, 'num_position': num_position,
                            'num_employee': num_employee, 'num_procexec': num_procexec, 'num_atype': num_atype,
                            'num_arrowgloss': num_arrowgloss, 'num_bpwork': num_bpwork, 'num_tresource': num_tresource,
-                           'num_unitm': num_unitm, 'num_resource': num_resource, 'num_wresource': num_wresource})
+                           'num_unitm': num_unitm, 'num_resource': num_resource, 'num_wresource': num_wresource,
+                           'num_analysis': num_analysis, 'num_cost_work': num_cost_work})

@@ -11,11 +11,11 @@
                 <th>Название работы</th>
                 <th>Уровень</th>
                 <th>Родительская работа</th>
-                <th>Удалить?</th>
+                <th>Удалить/Редактировать</th>
             </tr>
             </thead>
             <tbody>
-            {% for bpwork in bpworks reversed %}
+            {% for bpwork in bpworks|dictsort:'level' %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ bpwork.name }}</td>
@@ -23,8 +23,10 @@
                     <td>{{ bpwork.parent|upper }}</td>
                     <td><a class="btn btn-default"
                            href="{% url 'bpwork-delete' bpwork.id %}">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a></td>
+                        <span class="glyphicon glyphicon-trash">
+                    </a>
+                        <a class="btn btn-default" href="{% url 'bpwork-edit' bpwork.id %}"></span><span
+                                class="glyphicon glyphicon-edit"></span></a></td>
                 </tr>
             {% empty %}
                 <tr>
@@ -34,7 +36,7 @@
             </tbody>
         </table>
         <div class="panel-footer">
-            <a href="{% url 'bp-expenses' bp.id %}">
+            <a href="{% url 'cost_work-detail' bp.id %}">
                 <button type="button" class="btn btn-success">Сформировать затраты</button>
             </a>
             <a href="{% url 'bp-list' %}">
