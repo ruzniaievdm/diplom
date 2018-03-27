@@ -1,10 +1,11 @@
 from django import forms
+from django.forms import BaseFormSet, formset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from core.Analysis.models import Analysis
 from core.BusinessProcess.models import BusinessProcess
 from core.BusinessProcessWork.models import BusinessProcessWork
-from core.CostWork.models import CostWork
+from core.CostWork.models import CostWork, Coefficient
 from core.UnitMeasure.models import UnitMeasure
 
 
@@ -52,3 +53,29 @@ class CostWorkForm(forms.ModelForm):
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
             raise forms.ValidationError(_('Analysis with this process already exists, create new analysis'))
+
+
+class CoefficientForm(forms.ModelForm):
+    class Meta:
+        model = Coefficient
+        fields = ['name', 'value']
+
+    def __init__(self, *args, **kwargs):
+        super(CoefficientForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control'})
+
+
+class BaseCoefficientFormSet(BaseFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        names = []
+        for form in self.forms:
+            name = form.cleaned_data['name']
+            if name in names:
+                raise forms.ValidationError('Coefficients in a set must have distinct names.')
+            names.append(name)
+
+
+CoefficientFormSet = formset_factory(CoefficientForm, formset=BaseCoefficientFormSet, extra=7)

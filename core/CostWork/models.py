@@ -23,3 +23,21 @@ class CostWork(models.Model):
 
     def __str__(self):
         return '%s' % self.work
+
+
+class Coefficient(models.Model):
+    name = models.CharField(max_length=12)
+    value = models.DecimalField(max_digits=8, decimal_places=2)
+
+    class Meta:
+        db_table = 'coefficient'
+
+    def __str__(self):
+        return 'Coefficient id = %s' % self.id
+
+    @property
+    def label(self):
+        return '%s: %s' % (self.name, self.value)
+
+    def get_tuple(self):
+        return self.name, self.value

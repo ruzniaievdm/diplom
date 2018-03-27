@@ -31,13 +31,13 @@
                             <p>There are no analysis cost in the app.</p>
                         {% endif %}
                     </div>
+
+                    <div class="panel-footer">
+                        <a href="{% url 'cost_work-add' %}">
+                            <button type="button" class="btn btn-info">Добавить</button>
+                        </a>
+                    </div>
                 </div>
-                <div class="panel-footer">
-                    <a href="{% url 'cost_work-add' %}">
-                        <button type="button" class="btn btn-info">Добавить</button>
-                    </a>
-                </div>
-            </div>
         </form>
     </div>
 {% endblock %}

@@ -16,7 +16,7 @@ def business_process_work_list(request):
 
 def business_process_work_add(request):
     if request.method == "POST":
-        form = BusinessProcessWorkForm(request.POST)
+        form = BusinessProcessWorkForm(request.POST, )
         if form.is_valid():
             bpwork = form.save(commit=False)
             bpwork.name = form.cleaned_data['name']
@@ -28,7 +28,7 @@ def business_process_work_add(request):
     else:
         form = BusinessProcessWorkForm()
     return render(request, 'BusinessProcessWork/bpwork_add.html',
-                  {'form': form})
+                  {'form': form, })
 
 
 def business_process_work_edit(request, bpwork_id):
@@ -57,14 +57,3 @@ def business_process_work_delete(request, bpwork_id):
         messages.error(request, ('Work has related objects and can not be deleted'))
     return redirect('bpwork-list')
 
-
-# def business_process_work_delete_cell(request, bpwork_id, bp_id):
-#     bpwork = get_object_or_404(BusinessProcessWork, pk=bpwork_id, process_id=bp_id)
-#     success_url = redirect('bp-detail', pk=bp_id)
-#     try:
-#         bpwork.delete()
-#     except ProtectedError:
-#         messages.error(request, ('Work has related objects and can not be deleted'))
-#     return success_url
-def get_queryset(process_id):
-    process_list = BusinessProcessWork.objects.filter(process_id=process_id)

@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'select2',
     'bootstrap4',
     'django_tables2',
     'core.Enterprise',
@@ -57,8 +56,7 @@ INSTALLED_APPS = [
     'core.CostWork',
     'core.WorkResource',
     'core.Analysis',
-    'core.Hg',
-    'app',
+    'core.Profile',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +74,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Manager/templates', 'app/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'Manager/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,29 +92,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'django_db',
-#         'USER': 'rewalkerof',
-#         'PASSWORD': 'password',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
         'USER': 'rewalkerof',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'read_default_file': '/path/to/my.cnf',
-        },
+        'PORT': '5432',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'db',
+#         'USER': 'rewalkerof',
+#         'PASSWORD': 'password',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'read_default_file': '/path/to/my.cnf',
+#         },
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -174,3 +172,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR + '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "staticfiles"),
+)

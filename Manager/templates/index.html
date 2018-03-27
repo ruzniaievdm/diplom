@@ -1,26 +1,63 @@
 {% extends "base.html" %}
+{% block title %}
+    Home
+{% endblock %}
 
 {% block content %}
     <h1>Повышение ефективности бизнес процессов</h1>
     <hr/>
     <p><em>Добро пожаловать</em></p>
     <ul class="list-unstyled list-group">
-        <li><strong>Предприятий: </strong> {{ num_enterprise }}</li>
-        <li><strong>Бизнес-процессов: </strong> {{ num_bp }}</li>
-        <li><strong>Групп бизнес-процессов: </strong> {{ num_bpgroup }}</li>
-        <li><strong>Отделов: </strong> {{ num_department }}</li>
-        <li><strong>Должностей сотрудников: </strong> {{ num_position }}</li>
-        <li><strong>Сотрудников: </strong>{{ num_employee }}</li>
-        <li><strong>Исполнителей процессов: </strong> {{ num_procexec }}</li>
-        <li><strong>Типов стрелок: </strong> {{ num_atype }}</li>
-        <li><strong>Стрелок: </strong> {{ num_arrowgloss }}</li>
-        <li><strong>Работ бизнес-процесса:</strong> {{ num_bpwork }}</li>
-        <li><strong>Типов ресурсов:</strong> {{ num_tresource }}</li>
-        <li><strong>Шкал измерений:</strong> {{ num_mscale }}</li>
-        <li><strong>Единиц измерения:</strong> {{ num_unitm }}</li>
-        <li><strong>Ресурсы:</strong> {{ num_resource }}</li>
-        <li><strong>Работа-Ресурсы:</strong> {{ num_wresource }}</li>
-        <li><strong>Анализ:</strong> {{ num_analysis }}</li>
-        <li><strong>Анализ стоимостей работ:</strong> {{ num_cost_work}}</li>
+        <a href="{% url 'enterprise-list' %}">
+            <li><strong>Предприятий: </strong> {{ num_enterprise }}</li>
+        </a>
+        <a href="{% url 'bp-list' %}">
+            <li><strong>Бизнес-процессов: </strong> {{ num_bp }}</li>
+        </a>
+        <a href="{% url 'bpgroup-list' %}">
+            <li><strong>Групп бизнес-процессов: </strong> {{ num_bpgroup }}</li>
+        </a>
+        <a href="{% url 'department-list' %}">
+            <li><strong>Отделов: </strong> {{ num_department }}</li>
+        </a>
+        <a href="{% url 'position-list' %}">
+            <li><strong>Должностей сотрудников: </strong> {{ num_position }}</li>
+        </a>
+        <a href="{% url 'employee-list' %}">
+            <li><strong>Сотрудников: </strong>{{ num_employee }}</li>
+        </a>
+        <a href="{% url 'procexec-list' %}">
+            <li><strong>Исполнителей процессов: </strong> {{ num_procexec }}</li>
+        </a>
+        <a href="{% url 'atype-list' %}">
+            <li><strong>Типов стрелок: </strong> {{ num_atype }}</li>
+        </a>
+        <a href="{% url 'arrowgloss-list' %}">
+            <li><strong>Стрелок: </strong> {{ num_arrowgloss }}</li>
+        </a>
+        <a href="{% url 'bpwork-list' %}">
+            <li><strong>Работ бизнес-процесса:</strong> {{ num_bpwork }}</li>
+        </a>
+        <a href="{% url 'tresource-list' %}">
+            <li><strong>Типов ресурсов:</strong> {{ num_tresource }}</li>
+        </a>
+        <a href="{% url 'mscale-list' %}">
+            <li><strong>Шкал измерений:</strong> {{ num_mscale }}</li>
+        </a>
+        <a href="{% url 'unitm-list' %}">
+            <li><strong>Единиц измерения:</strong> {{ num_unitm }}</li>
+        </a>
+        <a href="{% url 'resource-list' %}">
+            <li><strong>Ресурсы:</strong> {{ num_resource }}</li>
+        </a>
+        <a href="{% url 'wresource-list' %}">
+            <li><strong>Работа-Ресурсы:</strong> {{ num_wresource }}</li>
+        </a>
+        <a href="{% url 'analysis-list' %}">
+            <li><strong>Анализ:</strong> {{ num_analysis }}</li>
+        </a>
+        <a href="{% url 'cost_work-list' %}">
+            <li><strong>Анализ стоимостей работ:</strong> {{ num_cost_work }}</li>
+        </a>
     </ul>
 {% endblock %}

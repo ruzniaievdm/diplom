@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.forms import formset_factory, BaseFormSet
 
 from core.Department.models import Department
 from core.Enterprise.models import Enterprise
@@ -34,3 +35,18 @@ class DepartmentForm(forms.ModelForm):
         # error_messages = {
         #     'password_mismatch': _("The two password fields didn't match."),
         # }
+
+
+# class BaseDepartmentFormSet(BaseFormSet):
+#     def clean(self):
+#         if any(self.errors):
+#             return
+#         names = []
+#         for form in self.forms:
+#             name = form.cleaned_data['name']
+#             if name in names:
+#                 raise forms.ValidationError('In a set must have distinct names.')
+#             names.append(name)
+#
+#
+# DepartmentFormSet = formset_factory(DepartmentForm, formset=BaseDepartmentFormSet, can_delete=True, extra=1)

@@ -1,7 +1,9 @@
 from django import forms
+from django.forms import inlineformset_factory, formset_factory, modelformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from core.BusinessProcess.models import BusinessProcess
+from core.BusinessProcessWork.models import BusinessProcessWork
 from core.Enterprise.models import Enterprise
 from core.BusinessProcessGroup.models import BusinessProcessGroup
 
@@ -9,7 +11,10 @@ from core.BusinessProcessGroup.models import BusinessProcessGroup
 class BusinessProcessForm(forms.ModelForm):
     class Meta:
         model = BusinessProcess
-        fields = ['name', 'cost_plan', 'relative_important', 'bp_group']
+        fields = '__all__'
+        # widgets = {
+        #     'name': Textarea(attrs={'cols': 80, 'rows': 20}),
+        # }
 
     name = forms.CharField(
         max_length=128, label=_('Название'), widget=forms.TextInput(
@@ -44,3 +49,6 @@ class BusinessProcessForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError(_('Business process %s already exists' % name))
         return name
+
+# BusinessProcessWorkFormSet = inlineformset_factory(BusinessProcess, BusinessProcessWork, fields=(
+#     'name', 'level', 'parent', 'process'), extra=1)

@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.db.models import ProtectedError
+from django.forms import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
@@ -57,3 +58,5 @@ def department_delete(request, department_id):
     except ProtectedError:
         messages.warning(request, _('Department has related objects and can not be deleted'))
     return redirect('department-list')
+
+

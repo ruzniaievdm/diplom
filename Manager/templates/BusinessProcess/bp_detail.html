@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% block title %}Business Process</title>
+{% endblock %}
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -20,17 +22,20 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ bpwork.name }}</td>
                     <td>{{ bpwork.level }}</td>
-                    <td>{{ bpwork.parent|upper }}</td>
+                    <td>{% if bpwork.parent == NONE %}{{ bpwork.process|upper }}{% else %}{{ bpwork.parent }}{% endif %}
+
+                    </td>
                     <td><a class="btn btn-default"
                            href="{% url 'bpwork-delete' bpwork.id %}">
-                        <span class="glyphicon glyphicon-trash">
+
+                        <span class="glyphicon glyphicon-trash"></span>
                     </a>
-                        <a class="btn btn-default" href="{% url 'bpwork-edit' bpwork.id %}"></span><span
+                        <a class="btn btn-default" href="{% url 'bpwork-edit' bpwork.id %}"><span
                                 class="glyphicon glyphicon-edit"></span></a></td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td class="cos-xs-12 " colspan="5">No data</td>
+                    <td class="cos-xs-12 " colspan="5">No data<{{ bpwork.parent }}/td>
                 </tr>
             {% endfor %}
             </tbody>

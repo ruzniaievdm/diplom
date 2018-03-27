@@ -7,9 +7,41 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Анализ стоимостей работ/Добавление</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="overflow:auto;max-height: 450px">
                     {{ form.as_p }}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        <div class="coefficient-form form-group">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    {{ form.name }}
+                                    {% if form.name.errors %}
+                                        {% for error in form.name.errors %}
+                                            {{ error|escape }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ form.value }}
+                                    {% if form.value.errors %}
+                                        {% for error in form.value.errors %}
+                                            {{ error|escape }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {#                                <div class="col-sm-2">#}
+                                {#                                    {{ form.DELETE }}#}
+                                {#                                </div>#}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if formset.non_form_errors %}
+                        {% for error in formset.non_form_errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
                 </div>
+
                 <div class="panel-footer">
                     <a href="{% url 'analysis-add' %}">
                         <button type="button" class="btn btn-info ">+Анализ</button>
@@ -28,4 +60,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block extra-js %}
+
 {% endblock %}

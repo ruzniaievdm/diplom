@@ -3,14 +3,14 @@ from django.db.models import ProtectedError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
-from Manager.CostWork.forms import CostWorkForm
+from Manager.CostWork.forms import CostWorkForm, CoefficientFormSet
 from core.CostWork.models import CostWork
 
 
 def cost_work_list(request):
     cost_works = CostWork.objects.all().order_by('id')
     return render(request, 'CostWork/cost_work_list.html',
-                  {'cost_works': cost_works})
+                  {'cost_works': cost_works, })
 
 
 def cost_work_detail(request, cost_work_id):
@@ -35,8 +35,9 @@ def cost_work_add(request):
             return redirect('cost_work-list')
     else:
         form = CostWorkForm()
+
     return render(request, 'CostWork/cost_work_add.html',
-                  {'form': form})
+                  {'form': form, })
 
 
 def cost_work_edit(request, cost_work_id):

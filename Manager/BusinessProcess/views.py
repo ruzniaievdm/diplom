@@ -1,13 +1,17 @@
 from django.contrib import messages
+from django.db import transaction
 from django.db.models import ProtectedError
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _
+from django.views.generic import CreateView
+from django.views.generic import ListView
+from django.views.generic import UpdateView
 
 from Manager.BusinessProcess.forms import BusinessProcessForm
 from core.BusinessProcess.models import BusinessProcess
 from core.BusinessProcessWork.models import BusinessProcessWork
-from core.Enterprise.models import Enterprise
 
 
 def bp_list(request):
@@ -45,6 +49,18 @@ def bp_add(request):
         form = BusinessProcessForm()
     return render(request, 'BusinessProcess/bp_add.html',
                   {'form': form})
+    #
+    # process = BusinessProcess.objects.get(pk=bp_id)
+    # if request.method == "POST":
+    #     formset = BusinessProcessWorkFormSet(request.POST, instanse=process)
+    #     if formset.is_valid():
+    #         formset.save()
+    #         return redirect('bp-list')
+    # else:
+    #     formset = BusinessProcessWorkFormSet(instance=process)
+    # return render(request, 'BusinessProcess/bp_add.html', {
+    #     'formset': formset,
+    # })
 
 
 def bp_edit(request, bp_id):

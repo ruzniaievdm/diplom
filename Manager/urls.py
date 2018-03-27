@@ -2,7 +2,7 @@ from django.urls import include, path
 from Manager import views
 
 urlpatterns = [
-    path('manager/', views.index, name='index'),
+    path('', views.index, name='index'),
     path('atype/', include('Manager.ArrowType.urls'), name='atype'),
     path('bp/', include('Manager.BusinessProcess.urls'), name='bp'),
     path('bpgroup/', include('Manager.BusinessProcessGroup.urls'), name='bpgroup'),
@@ -20,5 +20,5 @@ urlpatterns = [
     path('wresource/', include('Manager.WorkResource.urls'), name='wresource'),
     path('analysis/', include('Manager.Analysis.urls'), name='analysis'),
     path('cost_work/', include('Manager.CostWork.urls'), name='cost_work'),
-
+    path('profile/', include('Manager.Profile.urls'), name='profile'),
 ]

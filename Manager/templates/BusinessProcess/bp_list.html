@@ -1,22 +1,25 @@
 {% extends "base.html" %}
+{% block title %}Business Process|List
+{% endblock %}
 {% block content %}
     <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Бизнес-процессы/Список</h3>
+                    <h3 class="panel-title">Бизнес-процессы/Список({{ bps.count }})</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="box-scroll">
+                    <div class="box-scroll" style="height: 430px">
                         {% if bps %}
                             <ul class="list-unstyled list-group">
-                                {% for bp in bps %}
-                                    <li class="list-group-item">
-                                        {#                                        <span class="badge badge-info">{% for num in bpwork.process_id.all %}#}
-                                        {#                                            {{ num }}{% endfor %}</span>#}
-
-                                        <a href="{% url 'bp-detail' bp.id %}">{{ bp.name }}</a>
+                                {% for bp in bps reversed %}
+                                    <li class="list-group-item ">
+                                        <div class="col-md-offset-9">
+                                            {% for enterprise in bp.enterprise.name %}{{ enterprise }}{% endfor %}
+                                            ({% for group in bp.bp_group.name %}{{ group }}{% endfor %})
+                                        </div>
+                                        <h4>{{ bp.name }}</h4>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'bp-delete' bp.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -25,7 +28,12 @@
                                            href="{% url 'bp-edit' bp.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        {#                                        <span class="badge badge_pos">{{ bp.id }}</span>#}
+                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                           href="{% url 'bp-detail' bp.id %}">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                        <small class="text-muted">Стоимость: {{ bp.cost_plan }}<br> Относительная
+                                            важность:{{ bp.relative_important }}</small>
                                     </li>
                                 {% endfor %}
                             </ul>
