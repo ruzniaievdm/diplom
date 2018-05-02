@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-9">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default" style="width: 1000px; ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Анализ:<b><a
+                            href="{% url 'analysis-list' %}">{{ cost_work.analysis_id }}</a></b>
+                        Бизнес-процесс:<b><a href="{% url 'bp-list' %}">
+                            {% with total=cost_work.process %}{{ total }}{% endwith %}</a></b></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box-scroll" style="height: 430px;overflow-x: hidden; overflow-y: hidden;">
+                        {{ form.management_form }}
+                        <table class="table table-fixed table-striped">
+                            <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Название работы</th>
+                                <th>Вид</th>
+                                <th>Стоимость</th>
+                                <th>Продолжительность</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for form in formset %}
+                                {% for work in bpwork %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>
+                                            {{ work }}
+                                        </td>
+                                        <td>
+                                            {{ form.kind }}
+                                        </td>
+                                        <td>
+                                            {{ form.cost_work }}
+                                        </td>
+                                        <td>
+                                            {{ form.duration }}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {#                        {% for form in formset %}#}
+                        {#                            <ul class="list-unstyled list-group">#}
+                        {#                                <h4>Работа №{{ forloop.counter }}</h4>#}
+                        {#                                <li class="list-group-item ">#}
+                        {#                                    {% for process in cost_work.process.name %}#}
+                        {#                                        {{ process }}#}
+                        {#                                    {% endfor %}</li>#}
+                        {#                                <li class="list-group-item ">{{ form.measure }}</li>#}
+                        {#                                <li class="list-group-item ">{{ form.kind }}</li>#}
+                        {#                                <li class="list-group-item ">{{ form.cost_work }}</li>#}
+                        {#                                <li class="list-group-item ">{{ form.duration }}</li>#}
+                        {#                                <li></li>#}
+                        {#                                <li></li>#}
+                        {#                            </ul>#}
+                        {#                        {% endfor %}#}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'analysis-add' %}">
+                        <button type="button" class="btn btn-info ">+Анализ</button>
+                    </a>
+                    <a href="{% url 'bp-add' %}">
+                        <button type="button" class="btn btn-info">+ Бизнес-процесс</button>
+                    </a>
+                    <a href="{% url 'bpwork-add' %}">
+                        <button type="button" class="btn btn-info">+ Работу БП</button>
+                    </a>
+                    <a href="{% url 'cost_works-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-5">Отменить</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary ">Подтвердить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

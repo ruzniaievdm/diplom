@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% block title %}Department|List{% endblock %}
 {% block content %}
     <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Отделы/Список</h3>
+                    <h3 class="panel-title">Отделы/Список({{ departments.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +14,7 @@
                             <ul class="list-unstyled list-group">
                                 {% for department in departments %}
                                     <li class="list-group-item">
-                                        <a href="{% url 'department-detail' department.id %}">{{ department.name }}</a>
+                                        <h4>{{ department.name }}</h4>
 
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'department-delete' department.id %}">
@@ -23,7 +24,11 @@
                                            href="{% url 'department-edit' department.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ department.id }}</span>
+                                        <div>
+                                            <mark class="text-muted">{% with enterprise=department.enterprise.name %}
+                                                {{ enterprise }}{% endwith %}
+                                            </mark>
+                                        </div>
                                     </li>
                                 {% endfor %}
                             </ul>

@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
 from core.Analysis.models import Analysis
+from core.AnalysisProcess.models import AnalysisProcess
 from core.BusinessProcessWork.models import BusinessProcessWork
-from core.CostWork.models import CostWork
+
+from core.CostWorks.models import CostWorks
 from core.GlossaryArrow.models import GlossaryArrow
 from core.ArrowType.models import ArrowType
 from core.BusinessProcess.models import BusinessProcess
@@ -10,6 +12,7 @@ from core.BusinessProcessGroup.models import BusinessProcessGroup
 from core.Department.models import Department
 from core.Employee.models import Employee
 from core.Enterprise.models import Enterprise
+from core.ImportanceWorks.models import ImportanceWorks
 from core.PositionEmployee.models import PositionEmployee
 from core.ProcessExecutor.models import ProcessExecutor
 from core.Resource.models import Resource
@@ -34,11 +37,15 @@ def index(request):
     num_resource = Resource.objects.all().count()
     num_wresource = WorkResource.objects.all().count()
     num_analysis = Analysis.objects.all().count()
-    num_cost_work = CostWork.objects.all().count()
+    num_cost_works = CostWorks.objects.all().count()
+    num_importance_works = ImportanceWorks.objects.all().count()
+    num_analysis_process = AnalysisProcess.objects.all().count()
     return render(request, 'index.html',
                   context={'num_enterprise': num_enterprise, 'num_bp': num_bp, 'num_bpgroup': num_bpgroup,
                            'num_department': num_department, 'num_position': num_position,
                            'num_employee': num_employee, 'num_procexec': num_procexec, 'num_atype': num_atype,
                            'num_arrowgloss': num_arrowgloss, 'num_bpwork': num_bpwork, 'num_tresource': num_tresource,
                            'num_unitm': num_unitm, 'num_resource': num_resource, 'num_wresource': num_wresource,
-                           'num_analysis': num_analysis, 'num_cost_work': num_cost_work})
+                           'num_analysis': num_analysis, 'num_cost_works': num_cost_works,
+                           'num_analysis_process': num_analysis_process,
+                           'num_importance_works': num_importance_works, })

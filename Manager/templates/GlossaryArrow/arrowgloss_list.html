@@ -5,7 +5,7 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Глоссарий стрелок/Список</h3>
+                    <h3 class="panel-title">Глоссарий стрелок/Список({{ arrowglosses.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +13,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for arrowgloss in arrowglosses %}
                                     <li class="list-group-item">
-                                        {{ arrowgloss.arrow_description }}
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'arrowgloss-delete' arrowgloss.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +21,7 @@
                                            href="{% url 'arrowgloss-edit' arrowgloss.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ arrowgloss.id }}</span>
+                                        <h4>{{ arrowgloss.arrow_description }}</h4>
                                     </li>
                                 {% endfor %}
                             </ul>

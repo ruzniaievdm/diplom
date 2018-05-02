@@ -56,8 +56,15 @@
         <a href="{% url 'analysis-list' %}">
             <li><strong>Анализ:</strong> {{ num_analysis }}</li>
         </a>
-        <a href="{% url 'cost_work-list' %}">
-            <li><strong>Анализ стоимостей работ:</strong> {{ num_cost_work }}</li>
+        <a href="{% url 'analysis_process-list' %}">
+            <li><strong>Анализ процессов:</strong> {{ num_analysis_process }}</li>
         </a>
+        <a href="{% url 'cost_works-list' %}">
+            <li><strong>Анализ стоимостей работ:</strong> {{ num_cost_works }}</li>
+        </a>
+        <a href="{% url 'importance_works-list' %}">
+            <li><strong>Анализ значимостей работ:</strong> {{ num_importance_works }}</li>
+        </a>
+
     </ul>
 {% endblock %}

@@ -5,7 +5,7 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Типы ресурсов/Список</h3>
+                    <h3 class="panel-title">Типы ресурсов/Список({{ tresources.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +13,7 @@
                             <ul class="list-unstyled list-group">
                                 {% for tresource in tresources %}
                                     <li class="list-group-item">
-                                        {{ tresource.name }}
+
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'tresource-delete' tresource.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +22,8 @@
                                            href="{% url 'tresource-edit' tresource.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ tresource.id }}</span>
+                                        <h4>{{ tresource.name }}</h4>
+                                        {#                                        <span class="badge badge_pos">{{ tresource.id }}</span>#}
                                     </li>
                                 {% endfor %}
                             </ul>

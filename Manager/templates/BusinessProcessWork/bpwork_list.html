@@ -2,7 +2,7 @@
 {% block title %} Business Process Work|List
 {% endblock %}
 {% block content %}
-    <div class="col-md-11">
+    <div class="col-md-12">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
@@ -15,7 +15,6 @@
                     </div>
                     <div class="box-scroll" style="height: 370px">
                         {% if bpworks %}
-                            {#                            #}
                             <ul id="myUl" class="list-unstyled list-group">
                                 {% for bpwork in bpworks reversed %}
                                     <li class="list-group-item">
@@ -25,7 +24,7 @@
                                         </div>
                                         <div class="md-1" style="float: right; ">
                                             <small>Родительская:
-                                                {% for parent in bpwork.parent.name %}{{ parent }}{% endfor %}</small>
+                                                {% with parent=bpwork.parent.name %}{{ parent }}{% endwith %}</small>
                                         </div>
                                         <br>
                                         <a style="text-decoration: none"><h4>{{ bpwork.name }}</h4></a>
@@ -37,8 +36,8 @@
                                            href="{% url 'bpwork-edit' bpwork.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <mark class="text-muted">{% for process in bpwork.process.name %}
-                                            {{ process }}{% endfor %}
+                                        <mark class="text-muted">{% with process=bpwork.process.name %}
+                                            {{ process }}{% endwith %}
                                         </mark>
                                     </li>
                                 {% endfor %}

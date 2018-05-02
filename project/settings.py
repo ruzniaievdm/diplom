@@ -53,10 +53,11 @@ INSTALLED_APPS = [
     'core.ScaleMeasure',
     'core.UnitMeasure',
     'core.Resource',
-    'core.CostWork',
+    'core.CostWorks',
     'core.WorkResource',
     'core.Analysis',
-    'core.Profile',
+    'core.AnalysisProcess',
+    'core.ImportanceWorks',
 ]
 
 MIDDLEWARE = [

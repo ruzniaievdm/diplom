@@ -5,7 +5,7 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Ресурсы/Список</h3>
+                    <h3 class="panel-title">Ресурсы/Список({{ resources.count}})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +13,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for resource in resources %}
                                     <li class="list-group-item">
-                                        <a href="{% url 'resource-detail' resource.id %}">{{ resource.name }}</a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'resource-delete' resource.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +21,8 @@
                                            href="{% url 'resource-edit' resource.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ resource.id }}</span>
+                                        <h4>{{ resource.name }}</h4>
+                                        {#                                        <span class="badge badge_pos">{{ resource.id }}</span>#}
                                     </li>
                                 {% endfor %}
                             </ul>

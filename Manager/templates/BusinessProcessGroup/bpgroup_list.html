@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}<title>Business Process Group|List</title>
+{% block title %}Business Process Group|List
 {% endblock %}
 {% block content %}
     <div class="col-md-9">
@@ -7,7 +7,7 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Группы бизнес-процессов/Список</h3>
+                    <h3 class="panel-title">Группы бизнес-процессов/Список({{ bpgroups.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -15,8 +15,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for bpgroup in bpgroups %}
                                     <li class="list-group-item">
-
-                                        <a href="">{{ bpgroup.name }}</a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'bpgroup-delete' bpgroup.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -25,7 +23,7 @@
                                            href="{% url 'bpgroup-edit' bpgroup.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ bpgroup.id }}</span>
+                                        <h4>{{ bpgroup.name }}</h4>
                                     </li>
                                 {% endfor %}
                             </ul>

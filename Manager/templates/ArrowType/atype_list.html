@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}<title>Arrow Type|List</title>
+{% block title %}Arrow Type|List
 {% endblock %}
 {% block content %}
     <div class="col-md-9">
@@ -7,7 +7,7 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Типы стрелок/Список</h3>
+                    <h3 class="panel-title">Типы стрелок/Список({{ atypes.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -15,7 +15,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for atype in atypes %}
                                     <li class="list-group-item">
-                                        <a href="">{{ atype.name }}({{ atype.short_name }})</a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'atype-delete' atype.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -24,7 +23,8 @@
                                            href="{% url 'atype-edit' atype.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ atype.id }}</span>
+                                        <h4><a href="">{{ atype.name }}({{ atype.short_name }})</a></h4>
+
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -34,8 +34,8 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="{% url 'atype-add' %}">
-                        <button type="button" class="btn btn-info">Добавить</button>
+                    <a {% comment %}href="{% url 'atype-add' %}"{% endcomment %}>
+                        <button type="button" class="btn btn-info disabled">Добавить</button>
                     </a>
                 </div>
             </div>

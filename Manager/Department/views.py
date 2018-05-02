@@ -14,12 +14,6 @@ def department_list(request):
                   {'departments': departments})
 
 
-def department_detail(request, department_id):
-    department = get_object_or_404(Department, pk=department_id)
-    return render(request, 'Department/department_detail.html',
-                  {'department': department})
-
-
 def department_add(request):
     if request.method == "POST":
         form = DepartmentForm(request.POST)
@@ -58,5 +52,3 @@ def department_delete(request, department_id):
     except ProtectedError:
         messages.warning(request, _('Department has related objects and can not be deleted'))
     return redirect('department-list')
-
-

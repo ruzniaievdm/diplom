@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Importance Works|List{% endblock %}
+{% block content %}
+    <div class="col-md-9">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Анализ значимостей работ/Список({{ importance_works.count }})</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box-scroll">
+                        {% if importance_works %}
+                            <ul class="list-unstyled list-group">
+                                {% for importance_work in importance_works %}
+                                    {#                                    {% for bp in bps %}#}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
+                                           href="{% url 'importance_works-delete' importance_work.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
+                                           href="{% url 'importance_works-edit' importance_work.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <h4>{% with work=importance_work.work.name %}
+                                            {{ work }}{% endwith %}</h4>
+                                        <div class="col-md-offset-1">
+                                            {% with ap=importance_work.unique.id %}Анализ процессов №
+                                                <b>{{ ap }}</b>{% endwith %}
+                                        </div>
+                                        <small class="col-md-offset-9">
+                                            Обьектная значимость: <b>{{ importance_work.object_importance }}</b>
+                                        </small>
+                                        <br>
+                                        <small class="col-md-offset-9">
+                                            Элементная значимость: <b>{{ importance_work.elemental_importance }}</b>
+                                        </small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no analysis importance work in the app.</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="panel-footer">
+                        <a href="{% url 'importance_works-add' %}">
+                            <button type="button" class="btn btn-info">Добавить</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

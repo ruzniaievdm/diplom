@@ -1,13 +1,8 @@
 from django.contrib import messages
-from django.db import transaction
 from django.db.models import ProtectedError
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _
-from django.views.generic import CreateView
-from django.views.generic import ListView
-from django.views.generic import UpdateView
 
 from Manager.BusinessProcess.forms import BusinessProcessForm
 from core.BusinessProcess.models import BusinessProcess
@@ -89,3 +84,5 @@ def bp_delete(request, bp_id):
     except ProtectedError:
         messages.warning(request, _('Business process has related objects and can not be deleted'))
     return HttpResponse("Deleted!")
+
+

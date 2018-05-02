@@ -5,11 +5,12 @@
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Анализ стоимостей работ/Редактирование</h3>
+                    <h3 class="panel-title">Анализ стоимостей работ/Добавление</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="overflow:auto;max-height: 450px">
                     {{ form.as_p }}
                 </div>
+
                 <div class="panel-footer">
                     <a href="{% url 'analysis-add' %}">
                         <button type="button" class="btn btn-info ">+Анализ</button>
@@ -20,7 +21,7 @@
                     <a href="{% url 'bpwork-add' %}">
                         <button type="button" class="btn btn-info">+ Работу БП</button>
                     </a>
-                    <a href="{% url 'cost_work-list' %}">
+                    <a href="{% url 'cost_works-list' %}">
                         <button type="button" class="btn btn-danger col-md-offset-2">Отменить</button>
                     </a>
                     <button type="submit" class="btn btn-primary ">Подтвердить</button>
@@ -28,4 +29,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block extra-js %}
+
 {% endblock %}

@@ -56,4 +56,3 @@ def business_process_work_delete(request, bpwork_id):
     except ProtectedError:
         messages.error(request, ('Work has related objects and can not be deleted'))
     return redirect('bpwork-list')
-

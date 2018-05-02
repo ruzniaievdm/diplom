@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% block title %}Enterprise|List{% endblock %}
 {% block content %}
     <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Предприятия/Список</h3>
+                    <h3 class="panel-title">Предприятия/Список({{ enterprises.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +14,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for enterprise in enterprises %}
                                     <li class="list-group-item">
-                                        <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'enterprise-delete' enterprise.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +22,10 @@
                                            href="{% url 'enterprise-edit' enterprise.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ num_bps }}</span>
+                                        <h4>
+                                            <a href="{% url 'enterprise-detail' enterprise.id %}">{{ enterprise.name }}</a>
+                                        </h4>
+
                                     </li>
                                 {% endfor %}
                             </ul>

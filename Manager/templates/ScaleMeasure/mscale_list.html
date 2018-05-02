@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% block title %}Scale Measure|List{% endblock %}
 {% block content %}
     <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Шкалы измерений/Список</h3>
+                    <h3 class="panel-title">Шкалы измерений/Список({{ mscales.count }})</h3>
                 </div>
                 <div class="panel-body">
                     <div class="box-scroll">
@@ -13,7 +14,6 @@
                             <ul class="list-unstyled list-group">
                                 {% for mscale in mscales %}
                                     <li class="list-group-item">
-                                        {{ mscale.name }}
                                         <a class="btn btn-default btn-xs compon_glyphicon"
                                            href="{% url 'mscale-delete' mscale.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -22,7 +22,8 @@
                                            href="{% url 'mscale-edit' mscale.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <span class="badge badge_pos">{{ mscale.id }}</span>
+                                        <h4>{{ mscale.name }}</h4>
+                                        {#                                        <span class="badge badge_pos">{{ mscale.id }}</span>#}
                                     </li>
                                 {% endfor %}
                             </ul>

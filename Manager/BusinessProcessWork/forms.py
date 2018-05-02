@@ -44,9 +44,7 @@ class BusinessProcessWorkForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        process = self.cleaned_data['process']
-        level = self.cleaned_data['level']
-        qs = BusinessProcessWork.objects.filter(name=name, process=process, level=level)
+        qs = BusinessProcessWork.objects.filter(name=name)
         if qs.exists() and self.instance:
             qs.exclude(pk=self.instance.pk)
         if qs.exists():
