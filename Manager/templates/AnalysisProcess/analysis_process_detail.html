@@ -11,64 +11,59 @@
                 Бизнес-процесс:<b><a href="{% url 'bp-list' %}">
                     {% with total=analysis_process.process %}{{ total }}{% endwith %}</a></b></h3>
         </div>
-        <table class="table table-fixed table-striped">
+        <table class="table table-fixed">
             <thead>
             <tr>
-                <th>№</th>
-                <th>Название работы</th>
-                <th>Вид</th>
-                <th>Стоимость</th>
-                <th>Продолжительность</th>
+                <th style="width: 20%">Название работы</th>
+                <th style="width: 15%">Вид</th>
+                <th style="width: 10%">Стоимость</th>
+                <th style="width: 15%">Продолжительность</th>
+                <th
+                        title="Обьектная значимость" style="width: 10%">F'
+                </th>
+                <th title="Элементная значимость" style="width: 10%">F
+                </th>
+                <th title="Относительная важность" style="width: 10%">P'
+                </th>
+                <th title="Относительная стоимость" style="width: 10%">C
+                </th>
             </tr>
             </thead>
             <tbody>
+            {% with count=0 %}{% endwith %}
             {% for work in cost_work %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ work.work.name }}</td>
-                    <td>{{ work.kind }}</td>
-                    <td>{{ work.cost_work }}</td>
-                    <td>{{ work.duration }}</td>
-                </tr>
+                {% for work1 in importance_work %}
+                    {% if work.work.name == work1.work.name %}
+                        <tr>
+                            <td style="width: 20%">{{ work.work.name|slice:":128"|add:"" }}</td>
+                            <td style="width: 15%">{{ work.kind }}</td>
+                            <td style="width: 10%">{{ work.cost_work }}</td>
+                            <td style="width: 15%">{{ work.duration }}</td>
+                            <td style="width: 10%">{{ work1.object_importance }}</td>
+                            <td style="width: 10%">{{ work1.elemental_importance }}</td>
+                            <td style="width: 10%">{{ work1.relative_importance }}</td>
+                            <td style="width: 10%">{{ work1.relative_cost }}</td>
+                        </tr>
+                    {% else %}
+                        {#                        -{{ work.work.id }}-{{ work1.work.id }}#}
+                    {% endif %}
+                {% endfor %}
             {% empty %}
                 <tr>
-                    <td class="cos-xs-12 " colspan="5">No data</td>
+                    <td class="cos-md-12 ">No data</td>
                 </tr>
             {% endfor %}
             </tbody>
-            {#            <tbody>#}
-            {#            {% for bpwork in bpworks|dictsort:'level' %}#}
-            {#                <tr>#}
-            {#                    <td>{{ forloop.counter }}</td>#}
-            {#                    <td>{{ bpwork.name }}</td>#}
-            {#                    <td>{{ bpwork.level }}</td>#}
-            {#                    <td>{% if bpwork.parent == NONE %}{{ bpwork.process|upper }}{% else %}{{ bpwork.parent }}{% endif %}#}
-            {#                    </td>#}
-            {#                    <td><a class="btn btn-default"#}
-            {#                           href="{% url 'bpwork-delete' bpwork.id %}">#}
-            {##}
-            {#                        <span class="glyphicon glyphicon-trash"></span>#}
-            {#                    </a>#}
-            {#                        <a class="btn btn-default" href="{% url 'bpwork-edit' bpwork.id %}"><span#}
-            {#                                class="glyphicon glyphicon-edit"></span></a></td>#}
-            {#                </tr>#}
-            {#            {% empty %}#}
-            {#                <tr>#}
-            {#                    <td class="cos-xs-12 " colspan="5">No data</td>#}
-            {#                </tr>#}
-            {#            {% endfor %}#}
-            {#            </tbody>#}
         </table>
+
         <div class="panel-footer">
-            <a href="">
-                <button type="button" class="btn btn-success">Сформировать затраты</button>
-            </a>
-            <a href="{% url 'analysis_process-list' %}">
-                <button type="button" class="btn btn-danger col-md-offset-7">Отменить
+            <a href="{% url 'analysis_process-abc' analysis_process.id %}">
+                <button type="button" class="btn btn-success col-md-2">Провести ФСА
                 </button>
             </a>
-            <a href="{% url 'bpwork-add' %}">
-                <button type="submit" class="btn btn-primary ">Добавить</button>
+            <a href="{% url 'analysis_process-list' %}">
+                <button type="button" class="btn btn-danger col-md-offset-9">Назад
+                </button>
             </a>
         </div>
     </div>

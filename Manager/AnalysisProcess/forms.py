@@ -18,7 +18,10 @@ class AnalysisProcessForm(forms.ModelForm):
     process = forms.ModelChoiceField(queryset=BusinessProcess.objects.all(), empty_label=None,
                                      label=_('Бизнес процесс'),
                                      widget=forms.Select(attrs={'id': 'process', 'class': 'form-control'}))
-    is_active = forms.BooleanField(widget=forms.HiddenInput(), required=False)
+
+    is_active_cost = forms.BooleanField(widget=forms.HiddenInput(), required=False)
+
+    is_active_importance = forms.BooleanField(widget=forms.HiddenInput(), required=False)
 
     def clean_unique(self):
         analysis = self.cleaned_data['analysis']

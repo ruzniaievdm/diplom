@@ -12,9 +12,9 @@ class CostWorksAnalysisForm(forms.ModelForm):
         model = CostWorks
         fields = '__all__'
 
-    time = forms.ModelChoiceField(queryset=AnalysisProcess.objects.all(), empty_label=None, required=True,
-                                  label=_('Анилиз процессов'), to_field_name='id',
-                                  widget=forms.Select(attrs={'id': 'analysis_process', 'class': 'form-control'}))
+    unique_cw = forms.ModelChoiceField(queryset=AnalysisProcess.objects.all(), empty_label=None, required=True,
+                                       label=_('Анилиз процессов'), to_field_name='id',
+                                       widget=forms.Select(attrs={'id': 'analysis_process', 'class': 'form-control'}))
 
     work = forms.ModelChoiceField(queryset=BusinessProcessWork.objects.all(), empty_label=None, required=False,
                                   label=_('Работа БП'),
@@ -36,15 +36,15 @@ class CostWorksAnalysisForm(forms.ModelForm):
                                     attrs={'id': 'duration', 'placeholder': _('Duration'),
                                            'class': 'form-control', }), )
 
-    def clean_name(self):
-        time = self.cleaned_data['time']
-        work = self.cleaned_data['work']
-        qs = CostWorks.objects.filter(time=time, work=work)
-        if qs.exists() and self.instance:
-            qs.exclude(pk=self.instance.pk)
-        if qs.exists():
-            raise forms.ValidationError(_(
-                'Analysis process with this work already exists, create new analysis'))
+    # def clean_name(self):
+    #     unique_cw = self.cleaned_data['unique_cw']
+    #     work = self.cleaned_data['work']
+    #     qs = CostWorks.objects.filter(unique_cw=unique_cw, work=work)
+    #     if qs.exists() and self.instance:
+    #         qs.exclude(pk=self.instance.pk)
+    #     if qs.exists():
+    #         raise forms.ValidationError(_(
+    #             'Analysis process with this work already exists, create new analysis'))
 
 
 class BaseCostWorksFormSet(BaseFormSet):
@@ -60,4 +60,3 @@ class BaseCostWorksFormSet(BaseFormSet):
 
 
 CostWorksAnalysisFormSet = formset_factory(CostWorksAnalysisForm, formset=BaseCostWorksFormSet, extra=1)
-

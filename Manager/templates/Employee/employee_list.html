@@ -23,11 +23,11 @@
                                         <h4>{{ employee.last_name }} {{ employee.first_name }} {{ employee.patronymic }}</h4>
                                         <mark class="text-muted">
                                             Отдел: {% for dep in employee.department.name %}{{ dep }}{% endfor %}</mark>
-                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
                                            href="{% url 'employee-delete' employee.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
-                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
                                            href="{% url 'employee-edit' employee.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>

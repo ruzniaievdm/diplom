@@ -31,7 +31,7 @@
                                         <h4>{% with work=cost_work.work.name %}
                                             {{ work }}{% endwith %}</h4>
                                         <div class="col-md-offset-1">
-                                            {% with ap=cost_work.time.id %}Анализ процессов №
+                                            {% with ap=cost_work.unique_cw.id %}Анализ процессов №
                                                 <b>{{ ap }}</b>{% endwith %}
                                         </div>
                                         <small class="col-md-offset-10">

@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'core.Analysis',
     'core.AnalysisProcess',
     'core.ImportanceWorks',
+    'core.ArrowWorks',
+    'core.Recommendations',
+    'core.Report',
 ]
 
 MIDDLEWARE = [

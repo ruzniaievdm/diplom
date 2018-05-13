@@ -7,6 +7,8 @@ from Manager.BusinessProcessWork.forms import BusinessProcessWorkForm
 from core.BusinessProcessWork.models import BusinessProcessWork
 
 
+
+
 def business_process_work_list(request):
     bpworks = BusinessProcessWork.objects.all().order_by('id')
 

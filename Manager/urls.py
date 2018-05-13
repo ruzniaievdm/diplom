@@ -22,5 +22,8 @@ urlpatterns = [
     path('cost_works/', include('Manager.CostWorks.urls'), name='cost_works'),
     path('analysis_process/', include('Manager.AnalysisProcess.urls'), name='analysis_process'),
     path('importance_works/', include('Manager.ImportanceWorks.urls'), name='importance_works'),
+    path('arrow_works/', include('Manager.ArrowWorks.urls'), name='arrows_works'),
+    path('recommendations/', include('Manager.Recommendations.urls'), name='recommendations'),
+    path('report/', include('Manager.Report.urls'), name='report'),
 
 ]

@@ -28,7 +28,6 @@ def importance_works_add(request):
             return redirect('importance_works-list')
     else:
         form = ImportanceWorksForm()
-
     return render(request, 'ImportanceWorks/importance_works_add.html',
                   {'form': form, })
 

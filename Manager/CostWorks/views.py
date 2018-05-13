@@ -29,7 +29,7 @@ def cost_works_add(request):
         form = CostWorksAnalysisForm(request.POST)
         if form.is_valid():
             cw = form.save(commit=False)
-            cw.time = form.cleaned_data['time']
+            cw.unique_cw = form.cleaned_data['unique_cw']
             cw.work = form.cleaned_data['work']
             cw.kind = form.cleaned_data['kind']
             cw.cost_work = form.cleaned_data['cost_work']
@@ -52,7 +52,7 @@ def cost_works_edit(request, cost_work_id):
             cost_work.work = form.cleaned_data['work']
             cost_work.kind = form.cleaned_data['kind']
             cost_work.cost_work = form.cleaned_data['cost_work']
-            cost_work.time = form.cleaned_data['time']
+            cost_work.unique_cw = form.cleaned_data['unique_cw']
             cost_work.duration = form.cleaned_data['duration']
             cost_work.save()
             return redirect('cost_works-list')

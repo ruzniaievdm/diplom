@@ -65,6 +65,14 @@
         <a href="{% url 'importance_works-list' %}">
             <li><strong>Анализ значимостей работ:</strong> {{ num_importance_works }}</li>
         </a>
-
+        <a href="{% url 'arrow_works-list' %}">
+            <li><strong>Cтрелки работ:</strong> {{ num_arrow_works }}</li>
+        </a>
+        <a href="{% url 'recommendations-list' %}">
+            <li><strong>Рекоммендации:</strong> {{ num_recommendations }}</li>
+        </a>
+        <a href="{% url 'report-list' %}">
+            <li><strong>Отчеты с рекомендациями:</strong> {{ num_report }}</li>
+        </a>
     </ul>
 {% endblock %}

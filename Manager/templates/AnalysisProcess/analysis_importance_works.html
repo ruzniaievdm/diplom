@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Analysis Importance Works|Detail
 {% endblock %}
+
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -12,58 +13,52 @@
                     {% with total=analysis_process.process %}{{ total }}{% endwith %}</a></b></h3>
         </div>
         <div class="panel-body">
-            <div class="box-scroll" style="height: 430px;overflow-x: hidden; overflow-y: hidden;">
-                {{ form.management_form }}
-                <table class="table table-fixed table-striped">
-                    <thead>
-                    <tr>
-                        <th>№</th>
-                        <th>Анализ-Процесс</th>
-                        <th>Название работы</th>
-                        <th>Элементная значимость</th>
-                        <th>Обьектная значимость</th>
-                        {#                        <th>Относительные затраты</th>#}
-                        {#                        <th>Относительная значисть</th>#}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for form in formset %}
-                        {% for work in bpwork %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>
-                                    {#                                    {{ form.process_id }}#}
-                                </td>
-                                <td>
-                                    {{ work }}
-                                </td>
-                                <td>
-                                    {{ form.elemental_importance }}
-                                </td>
-                                <td>
-                                    {{ form.object_importance }}
-                                </td>
-                                {#                                <td>#}
-                                {#                                    {{ form.relative_cost }}#}
-                                {#                                </td>#}
-                                {#                                <td>#}
-                                {#                                    {{ form.relative_importance }}#}
-                                {#                                </td>#}
-                            </tr>
+            <form method="post">
+                <div class="box-scroll" style="height: 430px;overflow-x: hidden; overflow-y: hidden;">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    <table class="table table-fixed table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width:25%;">№</th>
+                            <th style="width:25%;">Название работы</th>
+                            <th style="width:25%;">Элементная значимость</th>
+                            <th style="width:25%;">Обьектная значимость</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#                        {% load index %}#}
+                        {% for form in formset %}
+                            {% for work in bpwork %}
+                                <tr>
+                                    <td style="width:25%;">{{ forloop.counter }}</td>
+                                    <td style="width:25%;">
+                                        {#                                        {% with next_work=bpwork|index:forloop.counter0 %}{{ next_work }}{% endwith %}#}
+                                        {#                                        |get_at_index:forloop.counter0#}
+                                        {{ form.work.forloop.counter }}
+                                    </td>
+                                    <td style="width:25%;">
+                                        {{ form.elemental_importance }}
+                                    </td>
+                                    <td style="width:25%;">
+                                        {{ form.object_importance }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="panel-footer">
-            <a href="{% url 'importance_works-list' %}">
-                <button type="button" class="btn btn-danger col-md-offset-9">Отменить
-                </button>
-            </a>
-            <a href="">
-                <button type="submit" class="btn btn-primary ">Подтвердить</button>
-            </a>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'analysis_process-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-9">Отменить
+                        </button>
+                    </a>
+                    <a href="">
+                        <button type="submit" class="btn btn-primary ">Подтвердить</button>
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}

@@ -14,11 +14,11 @@
                                 {% for tresource in tresources %}
                                     <li class="list-group-item">
 
-                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
                                            href="{% url 'tresource-delete' tresource.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </a>
-                                        <a class="btn btn-default btn-xs compon_glyphicon"
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
                                            href="{% url 'tresource-edit' tresource.id %}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>

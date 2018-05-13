@@ -16,6 +16,7 @@ class ImportanceWorks(models.Model):
     class Meta:
         db_table = _('importance_works')
         verbose_name_plural = _('Importance Works')
+        unique_together = ('work', 'unique')
 
     def __str__(self):
         return '%s' % self.id

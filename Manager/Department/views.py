@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.db.models import ProtectedError
-from django.forms import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
@@ -22,6 +21,10 @@ def department_add(request):
             department.name = form.cleaned_data['name']
             department.enterprise = form.cleaned_data['enterprise']
             department.save()
+            print(form.cleaned_data)
+            print(department)
+            print(form.cleaned_data)
+            messages.success(request, "Added")
             return redirect('department-list')
     else:
         form = DepartmentForm()

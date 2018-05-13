@@ -8,9 +8,7 @@ from core.BusinessProcessWork.models import BusinessProcessWork
 
 
 class CostWorks(models.Model):
-    time = models.ForeignKey(AnalysisProcess, related_name='cost_works', on_delete=models.PROTECT)
-    # process = models.ForeignKey(BusinessProcess, on_delete=models.PROTECT)
-    # analysis = models.ForeignKey(Analysis, on_delete=models.PROTECT)
+    unique_cw = models.ForeignKey(AnalysisProcess, related_name='cost_works', on_delete=models.PROTECT)
     work = models.ForeignKey(BusinessProcessWork, on_delete=models.PROTECT)
     kind = models.CharField(max_length=64, null=True, blank=True)
     cost_work = models.FloatField(null=True, blank=True)
@@ -19,7 +17,7 @@ class CostWorks(models.Model):
     class Meta:
         db_table = _('cost_works')
         verbose_name_plural = _('Cost works')
-        # unique_together = ('time', 'process', 'analysis',)
+        unique_together = ('unique_cw', 'work')
 
     def __str__(self):
-        return '%s' % self.id
+        return '%s' % self.work.name

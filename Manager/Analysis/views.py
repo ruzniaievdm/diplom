@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db.models import ProtectedError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
-
+from django.http import HttpResponse
 from Manager.Analysis.forms import AnalysisForm
 from core.Analysis.models import Analysis
 
@@ -34,3 +34,5 @@ def analysis_delete(request, analysis_id):
     except ProtectedError:
         messages.warning(request, _('Аnalysis has related objects and can not be deleted'))
     return redirect('analysis-list')
+
+

@@ -24,7 +24,7 @@ class BusinessProcessWorkForm(forms.ModelForm):
             attrs={'id': 'parent', 'class': 'form-control', }))
 
     name = forms.CharField(
-        max_length=64, label=_('Название'), widget=forms.TextInput(
+        max_length=128, label=_('Название'), widget=forms.TextInput(
             attrs={'id': 'name', 'required': True,
                    'placeholder': _('Name'),
                    'class': 'form-control', 'type': 'text', }))

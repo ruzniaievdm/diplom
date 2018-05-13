@@ -14,7 +14,7 @@
                             <ul class="list-unstyled list-group">
                                 {% for analysis_process in analyses_process %}
                                     <li class="list-group-item">
-                                        <a class="btn btn-danger btn-xs compon_glyphicon" data-toggle="tooltip"
+                                        <a class="btn btn-danger disabled btn-xs compon_glyphicon" data-toggle="tooltip"
                                            data-placement="top" title="Удалить"
                                            href="{% url 'analysis_process-delete' analysis_process.id %}">
                                             <span class="glyphicon glyphicon-trash"></span>
@@ -53,13 +53,17 @@
                                             </a>
                                         {% endif %}
                                         <h4>{% with process=analysis_process.process.name %}
-                                            {{ process }}(id: {{ analysis_process.id }}){% endwith %}</h4>
+                                            <a href="{% url 'bp-detail' analysis_process.process.id %}">{{ process }}
+                                                (id: {{ analysis_process.id }}
+                                                )</a>{% endwith %}</h4>
                                         <div class="col-md-offset-1">
                                             {% with analysis=analysis_process.analysis.id %}Анализ:
                                                 <b>{{ analysis }}</b>{% endwith %}
                                             <br>
-                                            {% with process=analysis_process.process.name %}Процесс:
-                                                <b>{{ process }}</b>{% endwith %}
+                                            {% with analysis=analysis_process.analysis.description %}Описание:
+                                                <b>{{ analysis }}</b>{% endwith %}
+                                            {#                                            {% with process=analysis_process.process.name %}Процесс:#}
+                                            {#                                                <b>{{ process }}</b>{% endwith %}#}
                                         </div>
                                     </li>
                                     {#                                    {% endfor %}#}

@@ -49,16 +49,16 @@ class ImportanceWorksForm(forms.ModelForm):
                 'Importance with this work already exists, create new analysis'))
 
 
-class BaseImportanceWorksFormSet(BaseFormSet):
-    def clean(self):
-        if any(self.errors):
-            return
-        works = []
-        for form in self.forms:
-            work = form.cleaned_data['work']
-            if work in works:
-                raise forms.ValidationError('wo')
-        works.append(work)
+# class BaseImportanceWorksFormSet(BaseFormSet):
+#     def clean(self):
+#         if any(self.errors):
+#             return
+#         works = []
+#         for form in self.forms:
+#             work = form.cleaned_data['work']
+#             if work in works:
+#                 raise forms.ValidationError('wo')
+#         works.append(work)
 
 
-ImportanceWorksAnalysisFormSet = formset_factory(ImportanceWorksForm, formset=BaseImportanceWorksFormSet, extra=1)
+ImportanceWorksAnalysisFormSet = formset_factory(ImportanceWorksForm, extra=1)

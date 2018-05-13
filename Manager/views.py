@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from core.Analysis.models import Analysis
 from core.AnalysisProcess.models import AnalysisProcess
+from core.ArrowWorks.models import ArrowWorks
 from core.BusinessProcessWork.models import BusinessProcessWork
 
 from core.CostWorks.models import CostWorks
@@ -15,6 +16,8 @@ from core.Enterprise.models import Enterprise
 from core.ImportanceWorks.models import ImportanceWorks
 from core.PositionEmployee.models import PositionEmployee
 from core.ProcessExecutor.models import ProcessExecutor
+from core.Recommendations.models import Recommendations
+from core.Report.models import Report
 from core.Resource.models import Resource
 from core.TypeResource.models import TypeResource
 from core.UnitMeasure.models import UnitMeasure
@@ -40,6 +43,9 @@ def index(request):
     num_cost_works = CostWorks.objects.all().count()
     num_importance_works = ImportanceWorks.objects.all().count()
     num_analysis_process = AnalysisProcess.objects.all().count()
+    num_arrow_works = ArrowWorks.objects.all().count()
+    num_recommedations = Recommendations.objects.all().count()
+    num_report = Report.objects.all().count()
     return render(request, 'index.html',
                   context={'num_enterprise': num_enterprise, 'num_bp': num_bp, 'num_bpgroup': num_bpgroup,
                            'num_department': num_department, 'num_position': num_position,
@@ -48,4 +54,5 @@ def index(request):
                            'num_unitm': num_unitm, 'num_resource': num_resource, 'num_wresource': num_wresource,
                            'num_analysis': num_analysis, 'num_cost_works': num_cost_works,
                            'num_analysis_process': num_analysis_process,
-                           'num_importance_works': num_importance_works, })
+                           'num_importance_works': num_importance_works, 'num_arrow_works': num_arrow_works,
+                           'num_recommendations': num_recommedations, 'num_report': num_report})
