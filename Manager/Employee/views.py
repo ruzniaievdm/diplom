@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 
 from Manager.Employee.forms import EmployeeForm
 from core.Employee.models import Employee
+from core.Enterprise.models import Enterprise
 
 
 def employee_list(request):

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Importance Works|Edit
+{% endblock %}
+{% block content %}
+    <div class="col-md-9">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Анализ значимостей работ/Редактирование</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.as_p }}
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'analysis_process-add' %}">
+                        <button type="button" class="btn btn-info ">+ Анализ процесса</button>
+                    </a>
+                    <a href="{% url 'importance_works-list' %}">
+                        <button type="button" class="btn btn-danger col-md-offset-5">Отменить</button>
+                    </a>
+                    <button type="submit" class="btn btn-primary ">Подтвердить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,22 +1,33 @@
 from django.contrib import messages
 from django.db.models import ProtectedError
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
 from Manager.BusinessProcess.forms import BusinessProcessForm
 from core.BusinessProcess.models import BusinessProcess
+from core.BusinessProcessWork.models import BusinessProcessWork
 
 
 def bp_list(request):
     bps = BusinessProcess.objects.all().order_by('id')
+    context = {'bps': bps, }
     return render(request, 'BusinessProcess/bp_list.html',
-                  {'bps': bps})
+                  context)
 
 
 def bp_detail(request, bp_id):
     bp = get_object_or_404(BusinessProcess, pk=bp_id)
+    bpworks = BusinessProcessWork.objects.all().filter(process_id=bp)
     return render(request, 'BusinessProcess/bp_detail.html',
-                  {'bp': bp})
+                  {'bp': bp, 'bpworks': bpworks})
+
+
+def bp_expenses(request, bp_id):
+    bp = get_object_or_404(BusinessProcess, pk=bp_id)
+    bpworks = BusinessProcessWork.objects.all().filter(process_id=bp)
+    context = {'bp': bp, 'bpworks': bpworks}
+    return render(request, 'BusinessProcess/bp_expenses.html', context)
 
 
 def bp_add(request):
@@ -33,6 +44,18 @@ def bp_add(request):
         form = BusinessProcessForm()
     return render(request, 'BusinessProcess/bp_add.html',
                   {'form': form})
+    #
+    # process = BusinessProcess.objects.get(pk=bp_id)
+    # if request.method == "POST":
+    #     formset = BusinessProcessWorkFormSet(request.POST, instanse=process)
+    #     if formset.is_valid():
+    #         formset.save()
+    #         return redirect('bp-list')
+    # else:
+    #     formset = BusinessProcessWorkFormSet(instance=process)
+    # return render(request, 'BusinessProcess/bp_add.html', {
+    #     'formset': formset,
+    # })
 
 
 def bp_edit(request, bp_id):
@@ -60,5 +83,6 @@ def bp_delete(request, bp_id):
         bp.delete()
     except ProtectedError:
         messages.warning(request, _('Business process has related objects and can not be deleted'))
+    return HttpResponse("Deleted!")
 
-    return redirect('bp-list')
+

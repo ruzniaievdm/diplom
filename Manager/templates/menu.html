@@ -1,0 +1,116 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'index' %}">App</a>
+    </div>
+</nav>
+<div class="side-menu">
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Main Menu -->
+        <div class="side-menu-container">
+            <ul class="nav navbar-nav">
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse" href="#dropdown-lvl0"> <span
+                        class="glyphicon glyphicon-home"></span>Предприятия<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'enterprise-list' %}">Список предприятий</a></li>
+                                <li><a href="{% url 'department-list' %}">Отделы</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Dropdown-->
+                <li class="panel panel-default" id="dropdown">
+                    <a data-toggle="collapse" href="#dropdown-lvl1"> <span
+                            class="glyphicon glyphicon-user"></span>
+                        Сотрудники<span class="caret"></span>
+                    </a>
+                    <div id="dropdown-lvl1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'employee-list' %}">Список сотрудников</a></li>
+                                <li><a href="{% url 'position-list' %}">Должности</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                 href="#dropdown-lvl2"> <span
+                        class="glyphicon glyphicon-list-alt"></span>Бизнес-процессы<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'bp-list' %}">Список бизнес-процессов</a></li>
+                                <li><a href="{% url 'bpwork-list' %}">Работы бизнес-процессов</a></li>
+                                <li><a href="{% url 'bpgroup-list' %}">Группы бизнес-процессов</a></li>
+                                <li><a href="{% url 'procexec-list' %}">Исполнители бизнес-процессов</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                 href="#dropdown-lvl3"> <span
+                        class="glyphicon glyphicon-sort"></span>Стрелки работ<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'arrow_works-list' %}">Список стрелок работ</a></li>
+                                <li><a href="{% url 'atype-list' %}">Список типов стрелок</a></li>
+                                <li><a href="{% url 'arrowgloss-list' %}">Глоссарий стрелок</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                 href="#dropdown-lvl4"> <span
+                        class="glyphicon glyphicon-file"></span>Ресурсы<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'resource-list' %}">Список ресурсов</a></li>
+                                <li><a href="{% url 'tresource-list' %}">Типы ресурсов</a></li>
+                                <li><a href="{% url 'mscale-list' %}">Шкалы измерений</a></li>
+                                <li><a href="{% url 'unitm-list' %}">Единицы измерений</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                 href="#dropdown-lvl5"> <span
+                        class="glyphicon glyphicon-stats"></span>Анализ<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'analysis-list' %}">Анализ БП</a></li>
+                                <li><a href="{% url 'analysis_process-list' %}">Анализ процессов</a></li>
+                                <li><a href="{% url 'cost_works-list' %}">Анализ стоимостей работ</a></li>
+                                <li><a href="{% url 'importance_works-list' %}">Анализ значимостей работ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="panel panel-default" id="dropdown"><a data-toggle="collapse"
+                                                                 href="#dropdown-lvl6"> <span
+                        class="glyphicon glyphicon-indent-left"></span>Рекомендации<span
+                        class="caret"></span></a>
+                    <div id="dropdown-lvl6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{% url 'recommendations-list' %}">Список рекомендаций</a></li>
+                                <li><a href="{% url 'report-list' %}">Отчет по рекомендациям</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                {#                    <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>#}
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% block title %}Arrow Type|Add
+{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
@@ -9,16 +11,10 @@
                 </div>
                 <div class="panel-body">
                     {{ form.as_p }}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'atype-list' %}">
-                        <button type="button" class="btn btn-danger col-md-offset-9">Отменить</button>
+                        <button type="button" class="btn btn-danger col-md-offset-8">Отменить</button>
                     </a>
                     <button type="submit" class="btn btn-primary ">Добавить</button>
                 </div>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Recommendations|List{% endblock %}
+{% block content %}
+    <div class="col-md-9">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Рекомендации/Список({{ recommendations.count }})</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box-scroll">
+
+                        {% if recommendations %}
+                            <ul class="list-unstyled list-group">
+                                {% for recommendation in recommendations %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
+                                           href="{% url 'recommendations-delete' recommendation.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <h4>{% with work=recommendation.work.name %}
+                                            {{ work }}{% endwith %}</h4>
+                                        <div class="col-md-offset-1">
+                                            {% with ap=recommendation.unique.analysis.id %}Анализ №
+                                                <b>{{ ap }}</b>{% endwith %}
+                                        </div>
+                                        <div class="col-md-offset-1">
+                                            {% with ap=recommendation.unique.process.name %}Процессов №
+                                                <b>{{ ap }}</b>{% endwith %}
+                                        </div>
+                                        <small class="col-md-offset-8">
+                                            Относительая значимость: <b>{{ recommendtion.relative_importance }}</b>
+                                        </small>
+                                        <br>
+                                        <small class="col-md-offset-8">
+                                            Относительная стоимость: <b>{{ recommendation.relative_cost }}</b>
+                                        </small>
+                                        <small class="col-md-offset-8">
+                                            Продолжительность: <b>{{ recommendation.relative_cost }}</b>
+                                        </small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no recommendations in the app.</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="panel-footer">
+                        <a href="{% url 'recommendations-add' %}">
+                            <button type="button" class="btn btn-info">Добавить</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,20 +1,20 @@
 {% extends "base.html" %}
+{% block title %}Department|Add{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Отдел/Добавление</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body department-form">
                     {{ form.as_p }}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-
+                    {#                    {% if formset %}#}
+                    {#                        {% for form in formset %}#}
+                    {#                            {{ form.as_p }}#}
+                    {#                        {% endfor %}#}
+                    {#                    {% endif %}#}
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'enterprise-add' %}">

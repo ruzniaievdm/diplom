@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'bootstrap4',
+    'django_tables2',
     'core.Enterprise',
     'core.BusinessProcessGroup',
     'core.BusinessProcess',
@@ -51,8 +53,14 @@ INSTALLED_APPS = [
     'core.ScaleMeasure',
     'core.UnitMeasure',
     'core.Resource',
+    'core.CostWorks',
     'core.WorkResource',
-    'app',
+    'core.Analysis',
+    'core.AnalysisProcess',
+    'core.ImportanceWorks',
+    'core.ArrowWorks',
+    'core.Recommendations',
+    'core.Report',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +78,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Manager/templates', 'app/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'Manager/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +106,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-#
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -116,6 +123,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -135,7 +152,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'Manager/locale')
 )
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -146,3 +163,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR + '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "staticfiles"),
+)

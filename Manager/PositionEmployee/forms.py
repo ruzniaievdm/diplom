@@ -10,7 +10,7 @@ class PositionEmployeeForm(forms.ModelForm):
         fields = '__all__'
 
     name = forms.CharField(
-        max_length=64, label=_('Названиe'), widget=forms.TextInput(
+        max_length=64, label=_('Название'), widget=forms.TextInput(
             attrs={'id': 'name', 'required': True,
                    'placeholder': _('Position employee'),
                    'class': 'form-control', 'type': 'text', }))

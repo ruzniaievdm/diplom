@@ -13,12 +13,6 @@ def department_list(request):
                   {'departments': departments})
 
 
-def department_detail(request, department_id):
-    department = get_object_or_404(Department, pk=department_id)
-    return render(request, 'Department/department_detail.html',
-                  {'department': department})
-
-
 def department_add(request):
     if request.method == "POST":
         form = DepartmentForm(request.POST)
@@ -27,6 +21,10 @@ def department_add(request):
             department.name = form.cleaned_data['name']
             department.enterprise = form.cleaned_data['enterprise']
             department.save()
+            print(form.cleaned_data)
+            print(department)
+            print(form.cleaned_data)
+            messages.success(request, "Added")
             return redirect('department-list')
     else:
         form = DepartmentForm()

@@ -1,21 +1,62 @@
 {% extends "base.html" %}
+{% block title %}Business Process Work|Add
+{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Работы бизнес-процессов/Добавление</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="overflow:auto;max-height: 450px">
                     {{ form.as_p }}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-
+                    {#                    <fieldset>#}
+                    {#                        {{ formset.management_form }}#}
+                    {#                        {% for form in formset %}#}
+                    {#                            <div class="form-group bpwork-form">#}
+                    {#                                <div class="row">#}
+                    {#                                    <div class="col-sm-4">#}
+                    {#                                        {{ form.name }}#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-sm-3">#}
+                    {#                                        {{ form.level }}#}
+                    {#                                        {% if form.level.errors %}#}
+                    {#                                            {% for error in form.level.errors %}#}
+                    {#                                                {{ error|escape }}#}
+                    {#                                            {% endfor %}#}
+                    {#                                        {% endif %}#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-sm-2">#}
+                    {#                                        {{ form.parent }}#}
+                    {#                                        {% if form.parent.errors %}#}
+                    {#                                            {% for error in form.parent.errors %}#}
+                    {#                                                {{ error|escape }}#}
+                    {#                                            {% endfor %}#}
+                    {#                                        {% endif %}#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-sm-2">#}
+                    {#                                        {{ form.process }}#}
+                    {#                                        {% if form.process.errors %}#}
+                    {#                                            {% for error in form.process.errors %}#}
+                    {#                                                {{ error|escape }}#}
+                    {#                                            {% endfor %}#}
+                    {#                                        {% endif %}#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-sm-2">#}
+                    {#                                        {{ form.DELETE }}#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        {% endfor %}#}
+                    {#                        {% if formset.non_form_errors %}#}
+                    {#                            {% for error in formset.non_form_errors %}#}
+                    {#                                {{ error|escape }}#}
+                    {#                            {% endfor %}#}
+                    {#                        {% endif %}#}
+                    {#                    </fieldset>#}
                 </div>
+
                 <div class="panel-footer">
                     <a href="{% url 'bp-add' %}">
                         <button type="button" class="btn btn-info ">+ Бизнес-процесс</button>

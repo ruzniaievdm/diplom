@@ -1,33 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Глоссарий стрелок/Список</h3>
+                    <h3 class="panel-title">Глоссарий стрелок/Список({{ arrowglosses.count }})</h3>
                 </div>
                 <div class="panel-body">
-                    {% if arrowglosses %}
-                        <ul class="list-unstyled list-group">
-                            {% for arrowgloss in arrowglosses %}
-                                <li class="list-group-item">
-                                    {{ arrowgloss.arrow_description }}
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'arrowgloss-delete' arrowgloss.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'arrowgloss-edit' arrowgloss.id %}">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                    <span class="badge badge_pos">{{ arrowgloss.id }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>There are no arrow in the app.</p>
-                    {% endif %}
+                    <div class="box-scroll">
+                        {% if arrowglosses %}
+                            <ul class="list-unstyled list-group">
+                                {% for arrowgloss in arrowglosses %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
+                                           href="{% url 'arrowgloss-delete' arrowgloss.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
+                                           href="{% url 'arrowgloss-edit' arrowgloss.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <h4>{{ arrowgloss.arrow_description }}</h4>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no arrow in the app.</p>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'arrowgloss-add' %}">

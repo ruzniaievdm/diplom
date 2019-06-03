@@ -1,33 +1,36 @@
 {% extends "base.html" %}
+{% block title %}Scale Measure|List{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Шкалы измерений/Список</h3>
+                    <h3 class="panel-title">Шкалы измерений/Список({{ mscales.count }})</h3>
                 </div>
                 <div class="panel-body">
-                    {% if mscales %}
-                        <ul class="list-unstyled list-group">
-                            {% for mscale in mscales %}
-                                <li class="list-group-item">
-                                    {{ mscale.name }}
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'mscale-delete' mscale.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'mscale-edit' mscale.id %}">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                    <span class="badge badge_pos">{{ mscale.id }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>There are no scale in the app.</p>
-                    {% endif %}
+                    <div class="box-scroll">
+                        {% if mscales %}
+                            <ul class="list-unstyled list-group">
+                                {% for mscale in mscales %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
+                                           href="{% url 'mscale-delete' mscale.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
+                                           href="{% url 'mscale-edit' mscale.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <h4>{{ mscale.name }}</h4>
+                                        {#                                        <span class="badge badge_pos">{{ mscale.id }}</span>#}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no scale in the app.</p>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'mscale-add' %}">

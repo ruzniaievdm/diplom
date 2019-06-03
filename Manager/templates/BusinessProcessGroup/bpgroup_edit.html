@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% block title %}Business Process Group|Edit
+{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
@@ -9,12 +11,6 @@
                 </div>
                 <div class="panel-body">
                     {{ form.as_p }}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'bpgroup-list' %}">

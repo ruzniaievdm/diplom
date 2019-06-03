@@ -1,36 +1,41 @@
 {% extends "base.html" %}
+{% block title %}Arrow Type|List
+{% endblock %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Типы стрелок/Список</h3>
+                    <h3 class="panel-title">Типы стрелок/Список({{ atypes.count }})</h3>
                 </div>
                 <div class="panel-body">
-                    {% if atypes %}
-                        <ul class="list-unstyled list-group">
-                            {% for atype in atypes %}
-                                <li class="list-group-item">
-                                    <a href="">{{ atype.name }}({{ atype.short_name }})</a>
-                                    <a class="btn btn-default btn-xs compon_glyphicon"
-                                       href="{% url 'atype-delete' atype.id %}">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
-                                    <a class="btn btn-default btn-xs compon_glyphicon" href="{% url 'atype-edit' atype.id %}">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                    <span class="badge badge_pos">{{ atype.id }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>There are no arrow type in the app.</p>
-                    {% endif %}
+                    <div class="box-scroll">
+                        {% if atypes %}
+                            <ul class="list-unstyled list-group">
+                                {% for atype in atypes %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger btn-xs compon_glyphicon"
+                                           href="{% url 'atype-delete' atype.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-info btn-xs compon_glyphicon"
+                                           href="{% url 'atype-edit' atype.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <h4><a href="">{{ atype.name }}({{ atype.short_name }})</a></h4>
+
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no arrow type in the app.</p>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="{% url 'atype-add' %}">
-                        <button type="button" class="btn btn-info">Добавить</button>
+                    <a {% comment %}href="{% url 'atype-add' %}"{% endcomment %}>
+                        <button type="button" class="btn btn-info disabled">Добавить</button>
                     </a>
                 </div>
             </div>

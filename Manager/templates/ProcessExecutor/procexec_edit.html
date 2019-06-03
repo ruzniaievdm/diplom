@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-md-12">
+    <div class="col-md-9">
         <form action="" method="post">
             {% csrf_token %}
             <div class="panel panel-default">
@@ -9,12 +9,6 @@
                 </div>
                 <div class="panel-body">
                     {{ form.as_p }}
-                    {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-
                 </div>
                 <div class="panel-footer">
                     <a href="{% url 'department-add' %}">
@@ -27,7 +21,7 @@
                         <button type="button" class="btn btn-info ">+ Сотрудника</button>
                     </a>
                     <a href="{% url 'procexec-list' %}">
-                        <button type="button" class="btn btn-danger col-md-offset-3">Отменить</button>
+                        <button type="button" class="btn btn-danger col-md-offset-2">Отменить</button>
                     </a>
                     <button type="submit" class="btn btn-primary">Подтвердить</button>
                 </div>

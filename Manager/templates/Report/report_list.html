@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Report|List
+{% endblock %}
+{% block content %}
+    <div class="col-md-9">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Отчет/Список({{ reports.count }})</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="box-scroll">
+                        {% if reports %}
+                            <ul class="list-unstyled list-group">
+                                {% for report in reports %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-danger disabled btn-xs compon_glyphicon"
+                                           href="{% url 'report-delete' report.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                        <a class="btn btn-primary btn-xs compon_glyphicon"
+                                           href="{% url 'report-detail' report.id %}">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                        <a class="btn btn-success btn-xs compon_glyphicon"
+                                           href="{% url 'report-chart' report.id %}">
+                                            <span class="glyphicon glyphicon-signal"></span>
+                                        </a>
+
+                                        <h4><p>{{ report.description }}</p>create at: {{ report.create_at }}</h4>
+
+
+                                        {#                                        <span class="badge badge_pos">{{ analysis.id }}</span>#}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>There are no report in the app.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="{% url 'report-add' %}">
+                        <button type="button" class="btn btn-info">Добавить</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
