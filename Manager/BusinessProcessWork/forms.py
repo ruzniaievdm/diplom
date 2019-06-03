@@ -28,7 +28,6 @@ class BusinessProcessWorkForm(forms.ModelForm):
             attrs={'id': 'name', 'required': True,
                    'placeholder': _('Name'),
                    'class': 'form-control', 'type': 'text', }))
-
     class Meta:
         model = BusinessProcessWork
         fields = ['process', 'level', 'parent', 'name']

@@ -13,7 +13,6 @@ def position_list(request):
                   {'positions': positions})
 
 
-
 def position_add(request):
     if request.method == "POST":
         form = PositionEmployeeForm(request.POST)
